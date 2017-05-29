@@ -1,0 +1,86 @@
+window:
+    title: "rtv1 room"
+    size:
+        - 800
+        - 600
+ambiantlight: 1
+cam:
+    pos:
+        - 1
+        - -1
+        - 1
+    rot:
+        - 1
+        - 1
+        - 1
+    step:
+        - 1
+        - 1
+
+light:
+    pos:
+        - 2
+        - 2
+        - 2
+    rot:
+        - 2
+        - 2
+        - 2
+    intensity: 2
+
+cone:
+    pos:
+        - 3
+        - 3
+        - 3
+    rot:
+        - 3
+        - 3
+        - 3
+    color:
+        - 3
+        - 3
+        - 3
+    angle: 30
+cylinder:
+    pos:
+        - 4
+        - 4
+        - 4
+    rot:
+        - 4
+        - 4
+        - 4
+    color:
+        - 4
+        - 4
+        - 4
+    ray: 40
+plan:
+    pos:
+        - 5
+        - 5
+        - 5
+    rot:
+        - 5
+        - 5
+        - 5
+    color:
+        - 5
+        - 5
+        - 5
+sphere:
+    pos:
+        - 6
+        - 6
+        - 6
+    rot:
+        - 6
+        - 6
+        - 6
+    color:
+        - 6
+        - 6
+        - 6
+    ray: 60
+        

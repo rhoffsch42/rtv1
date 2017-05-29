@@ -1,0 +1,31 @@
+version: 25 05 2017
+-----------------------
+
+max fmax fmaxf
+---------------------------------
+strmax f" f"f
+tabmax f" f"f
+
+=> ou bien:
+
+strmax seulement grace a cette structure:
+strmax(TYPE *str, int size);
+
+#define TYPE	int
+#define TYPE	double
+#define TYPE	float
+
+typedef struct			s_itab
+{
+	TYPE				*data
+	TYPE				**tab;
+	int					w;
+	int					h;
+}						t_itab;
+tab = malloc(sizeof(TYPE*) * h);
+tab[i] = data + (i * w);
+
+attention: les pointeur dans le tableau pointent directement sur data,
+la chaine contenue ne se termine donc pas a   ptr + w   mais contient tout jusqua la fin de data.
+->Bien manipuler la chaine avec  w . 
+---------------------------------
