@@ -1,13 +1,20 @@
 window:
-    title: "rtv1 room"
     size:
-        - 800
-        - 600
-ambiantlight: 1
+        - 1920
+        - 1080
+#        - 1080
+    title: rtv1 room
+ambiantlight: 1 #dsdsd
+#dsdsd
+##
+#
+ # d
+
+
 cam:
     pos:
         - 1
-        - -1
+        - -1#dsdsd
         - 1
     rot:
         - 1
@@ -83,4 +90,3 @@ sphere:
         - 6
         - 6
     ray: 60
-        

@@ -22,7 +22,11 @@ SDL				=	`./$(LIB_SDL)/bin/sdl2-config --cflags --libs` -lSDL2_image
 
 CFILE			=	main.c \
 					init.c \
-					scene.c
+					scene.c \
+					remove_list.c \
+					ft_strtrim_extended.c \
+					build.c \
+					build_win.c
 
 HFILE			=	rtv1.h
 
