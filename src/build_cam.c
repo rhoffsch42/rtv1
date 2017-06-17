@@ -1,8 +1,8 @@
 #include <rtv1.h>
 
 /* build_pos
- * 1er check: ne start pas par "- " ou n'est que "- "
- */
+** 1er check: ne start pas par "- " ou n'est que "- "
+*/
 
 static int		build_pos(t_env *e, t_str *ptr)
 {
@@ -26,8 +26,8 @@ static int		build_pos(t_env *e, t_str *ptr)
 }
 
 /* build_rot
- * 1er check: ne start pas par "- " ou n'est que "- "
- */
+** 1er check: ne start pas par "- " ou n'est que "- "
+*/
 
 static int		build_rot(t_env *e, t_str *ptr)
 {
@@ -51,8 +51,8 @@ static int		build_rot(t_env *e, t_str *ptr)
 }
 
 /* build_step
- * 1er check: ne start pas par "- " ou n'est que "- "
- */
+** 1er check: ne start pas par "- " ou n'est que "- "
+*/
 
 static int		build_step(t_env *e, t_str *ptr)
 {

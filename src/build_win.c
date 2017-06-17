@@ -1,8 +1,8 @@
 #include <rtv1.h>
 
 /* build_size
- * 1er check: ne start pas par "- " ou n'est que "- "
- */
+** 1er check: ne start pas par "- " ou n'est que "- "
+*/
 
 static int		build_size(t_env *e, t_str *ptr)
 {
@@ -24,8 +24,8 @@ static int		build_size(t_env *e, t_str *ptr)
 }
 
 /* build_title
- * ajouter une verification? sep + 2 ne doit pas etre vide
- */
+** ajouter une verification? sep + 2 ne doit pas etre vide
+*/
 
 static int		build_title(t_env *e, t_str *ptr)
 {
@@ -39,9 +39,9 @@ static int		build_title(t_env *e, t_str *ptr)
 }
 
 /* build_win
- * tok = malloc(x + 1)
- * on rajoute le nombre de lignes (pour l'objet) needed dans building_algo()
- */
+** tok = malloc(x + 1)
+** on rajoute le nombre de lignes (pour l'objet) needed dans building_algo()
+*/
 
 t_str	*build_win(t_env *e, t_str *ptr)
 {

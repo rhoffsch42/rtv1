@@ -34,9 +34,9 @@ static int	get_chart_index(t_env *e, char *str)
 }
 
 /* building_algo
- * check avec get_chart_index :
- * on execute direct la func si on a un token a une seule value
- */
+** check avec get_chart_index :
+** on execute direct la func si on a un token a une seule value
+*/
 
 t_str		*building_algo(t_env *e, t_str *ptr, char **tok, \
 			int (**func)(t_env*, t_str*))
