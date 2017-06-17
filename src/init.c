@@ -16,9 +16,9 @@ void	init_yaml_chart(t_env *e)
 {
 	e->chart[0] = (t_chart){YA_WIN, \
 		2, YA_CHAR, Y_TITLE | Y_SIZE, (void*)build_win};
-	e->chart[1] = (t_chart){YA_AMBLIGHT, 1, YA_FLOAT, 0, (void*)build_win};
+	e->chart[1] = (t_chart){YA_AMBLIGHT, 1, YA_FLOAT, 0, (void*)build_amblight};
 	e->chart[2] = (t_chart){YA_CAM, \
-		3, YA_CHAR, Y_POS | Y_ROT | Y_STEP, (void*)build_win};
+		3, YA_CHAR, Y_POS | Y_ROT | Y_STEP, (void*)build_cam};
 	e->chart[3] = (t_chart){YA_LIGHT, \
 		3, YA_CHAR, Y_POS | Y_ROT | Y_INTENSITY, (void*)build_win};
 	e->chart[4] = (t_chart){YA_CONE, \
@@ -53,8 +53,10 @@ t_env	*init_env(void)
 	e->sdl->win_x = DEF_WIN_X;
 	e->sdl->win_y = DEF_WIN_Y;
 	e->sdl->title = ft_strdup(DEF_WIN_TITLE);
-	// e->sdl->win = NULL;
 	// e->sdl->surface = NULL;
+	// e->sdl->win = NULL;
+	ft_bzero(&e->cam, sizeof(t_cam));
+	e->amblight = 1;
 	e->lights = NULL;
 	e->spheres = NULL;
 	e->cones = NULL;
@@ -63,19 +65,19 @@ t_env	*init_env(void)
 	init_yaml_chart(e);
 	return (e);
 }
-/*
+
 void	init_sdl(t_sdl *sdl)
 {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0)
-		ft_errexit(SDL_GetError(), RED, SDL_FAIL);
-	ft_putendl(sdl->title);
-	sdl->win = SDL_CreateWindow(sdl->title, SDL_WINDOWPOS_CENTERED, \
-		SDL_WINDOWPOS_CENTERED, sdl->win_x, sdl->win_y, SDL_WINDOW_RESIZABLE);
-	SDL_ShowWindow(sdl->win);
-	SDL_RaiseWindow(sdl->win);
-	sdl->surface = SDL_GetWindowSurface(sdl->win);
-	SDL_FillRect(sdl->surface, NULL, 0x000000);
-	SDL_UpdateWindowSurface(sdl->win);
+	(void)sdl;
+	// if (SDL_Init(SDL_INIT_VIDEO) != 0)
+	// 	ft_errexit(SDL_GetError(), RED, SDL_FAIL);
+	// ft_putendl(sdl->title);
+	// sdl->win = SDL_CreateWindow(sdl->title, SDL_WINDOWPOS_CENTERED, 
+	// 	SDL_WINDOWPOS_CENTERED, sdl->win_x, sdl->win_y, SDL_WINDOW_RESIZABLE);
+	// SDL_ShowWindow(sdl->win);
+	// SDL_RaiseWindow(sdl->win);
+	// sdl->surface = SDL_GetWindowSurface(sdl->win);
+	// SDL_FillRect(sdl->surface, NULL, 0x000000);
+	// SDL_UpdateWindowSurface(sdl->win);
 	// SDL_Delay(5000);
 }
-*/

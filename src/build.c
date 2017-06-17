@@ -7,6 +7,17 @@ void		error_yaml(char *s1, char *s2)
 	ft_errexit(s2, YELLOW, YA_BAD_FORMAT);
 }
 
+t_str	*check_no_value(t_str *ptr)
+{
+	char	*s;
+
+	ft_putendl(ptr->str);
+	s = ft_strchr(ptr->str, YA_SEPARATOR);
+	if (s[1] != 0)
+		error_yaml(ptr->str, YA_ERROR);
+	return (ptr->next);
+}
+
 int		get_token_index(char **tokens, int tok_amount, char *str, char *sep)
 {
 	int		i;
@@ -30,6 +41,7 @@ void		build_objects(t_env *e, t_str *ptr)
 
 	while (ptr)
 	{
+		ft_putendl("build next");ft_putendl(ptr->str);
 		if ((sep = ft_strchr(ptr->str, YA_SEPARATOR)))
 		{
 			if (sep[1] != 0 && sep[1] != 32)
@@ -38,12 +50,14 @@ void		build_objects(t_env *e, t_str *ptr)
 			int i = 0;
 			while (i < YA_CHART_OBJ)
 			{
+				ft_putchar(':');
 				if (ft_strcmp(e->chart[i].key_name, ptr->str) == 0)
 				{
+					sep[0] = YA_SEPARATOR;
 					ptr = (e->chart[i].func(e, ptr));
-					ft_putendl("OOOOOOOOOO");
-					ft_putendl(ptr->str);
-					ft_putendl("OOOOOOOOOO");
+					// ft_putendl("OOOOOOOOOO");
+					// ft_putendl(ptr->str);
+					// ft_putendl	("OOOOOOOOOO");
 					break ;
 				}
 				i++;

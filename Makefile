@@ -25,8 +25,11 @@ CFILE			=	main.c \
 					scene.c \
 					remove_list.c \
 					ft_strtrim_extended.c \
+					ft_atof.c \
 					build.c \
-					build_win.c
+					build_win.c \
+					build_amblight.c \
+					build_cam.c
 
 HFILE			=	rtv1.h
 
@@ -43,7 +46,7 @@ OBJ				=	$(patsubst %.c, $(ODIR)%.o, $(CFILE))
 all: compile
 
 $(NAME): $(SRC) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -L libft/ -lft #$(SDL)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -L libft/ -lft -lm #$(SDL)
 	@echo "\033[33;32m$(NAME) \033[33;37mcreated"
 	@echo "\033[33;35m$(NAME) End\033[33;37m"
 

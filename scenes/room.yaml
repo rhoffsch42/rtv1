@@ -1,10 +1,10 @@
 window:
     size:
-        - 1920
-        - 1080
+        - -dsdsd.1920.22
+        - -1080
 #        - 1080
     title: rtv1 room
-ambiantlight: 1 #dsdsd
+ambiantlight: 0.56 #dsdsd
 #dsdsd
 ##
 #
@@ -14,15 +14,15 @@ ambiantlight: 1 #dsdsd
 cam:
     pos:
         - 1
-        - -1#dsdsd
-        - 1
+        - -2#dsdsd
+        - 3
     rot:
-        - 1
-        - 1
-        - 1
+        - 4
+        - 5
+        - 6
     step:
-        - 1
-        - 1
+        - 7
+        - 8
 
 light:
     pos:

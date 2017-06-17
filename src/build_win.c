@@ -1,11 +1,5 @@
 #include <rtv1.h>
 
-float	ft_atof(char *s)
-{
-	(void)s;
-	return (777);
-}
-
 void	check_build_title(t_env *e, t_str *ptr, char *i, char *sep)
 {
 	if (i[1] == 0)
@@ -21,12 +15,15 @@ void	check_build_title(t_env *e, t_str *ptr, char *i, char *sep)
 
 void	build_size(t_env *e, t_str *ptr, char *i)
 {
-	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != 32)
+	//if ne start pas par "- " || n'est que "- "
+	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (i[2] == 0)
 		e->sdl->win_x = (int)ft_atof(ptr->str + 2);
-	else
+	else if (i[2] == 1)
 		e->sdl->win_y = (int)ft_atof(ptr->str + 2);
+	else
+		error_yaml(ptr->str, YA_ERROR);
 	i[2]++;
 	if (i[2] == 2)
 	{
@@ -37,16 +34,17 @@ void	build_size(t_env *e, t_str *ptr, char *i)
 
 t_str	*build_win(t_env *e, t_str *ptr)
 {
+	ft_putendl("- - - - - -build_win");
 	char	*tokens[2];
 	char	i[3];
 	char	*sep;
 
-	ptr = ptr->next;
+	ptr = check_no_value(ptr);
 	tokens[0] = YA_TITLE;
 	tokens[1] = YA_SIZE;
-	i[0] = 0;
-	i[1] = -1;
-	i[2] = -1;
+	i[0] = 0;//inc
+	i[1] = -1;//profondeur 1
+	i[2] = -1;//profondeur 2
 	while (i[0] < 4)
 	{
 		if (i[1] == -1 && (sep = ft_strchr(ptr->str, YA_SEPARATOR)))

@@ -14,8 +14,10 @@
 # define RTV1_H
 
 # include <libft.h>
-//# include <SDL2/SDL.h>
+// # include <SDL2/SDL.h>
 # include <math.h>
+
+# define ENDL			ft_putchar(10);
 
 # define DEF_WIN_TITLE	"Default title"
 # define DEF_WIN_X		800
@@ -167,6 +169,8 @@ typedef struct			s_env
 {
 	t_chart				chart[YA_CHART_AMT];
 	t_sdl				*sdl;
+	t_cam				cam;
+	float				amblight;
 	t_light				*lights;
 	t_sphere			*spheres;
 	t_cone				*cones;
@@ -185,9 +189,13 @@ LIST_TYPE				remove_list(LIST_TYPE ptr, int (f)(LIST_TYPE));
 void					error_yaml(char *s1, char *s2);
 void					build_objects(t_env *e, t_str *ptr);
 int						get_token_index(char **tokens, int tok_amount, char *str, char *sep);
+t_str					*check_no_value(t_str *ptr);
 t_str					*build_win(t_env *e, t_str *ptr);
+t_str					*build_amblight(t_env *e, t_str *ptr);
+t_str					*build_cam(t_env *e, t_str *ptr);
 
 
 char					*ft_strtrim_extended(const char *s);
+float					ft_atof(char *s);
 
 #endif
