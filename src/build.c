@@ -18,39 +18,6 @@ t_str	*check_no_value(t_str *ptr)
 	return (ptr->next);
 }
 
-int		get_token_index(char **tokens, int tok_amount, char *str, char *sep)
-{
-	int		i;
-
-	sep[0] = 0;
-	i = 0;
-	while (i < tok_amount)
-	{
-		if (ft_strcmp(tokens[i], str) == 0)
-			break ;
-		i++;
-	}
-	if (i >= tok_amount)
-		error_yaml(str, YA_ERROR);
-	sep[0] = YA_SEPARATOR;
-	return (i);
-}
-
-int		get_chart_index(t_env *e, char *str)
-{
-	int		i;
-
-	i = 0;
-	while (i < YA_CHART_AMT)
-	{
-		if (ft_strcmp(e->chart[i].key_name, str) == 0)
-			return (i);
-		i++;
-	}
-	error_yaml(str, YA_BAD_TOKEN);
-	return (-1);
-}
-
 void		build_objects(t_env *e, t_str *ptr)
 {
 	char	*sep;

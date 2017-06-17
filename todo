@@ -1,1 +1,23 @@
-refaire build_win comme build_cam
+possible: construire le tableau de tokens (tok[]) via la charte et les operations binaires
+	char a = 1;
+	char b = 2;
+	char c = 4;
+	char d = 8;
+	char e = 16;
+	char f = 32;
+	char g = 64;
+	char h = 128;
+
+	char cont = a | b | f;
+
+	// f est dans cont?
+	if ((cont & f) == f)
+		ft_putendl("yes");
+
+
+
+	if ((cont & (f | g) == (f | g))
+		ft_putendl("yes");
+	// si je veux que ce soit obligatoirement les deux je suis obligé de faire la comparaison
+	// sinon cest soit l un soit l autre
+	// ou les deux

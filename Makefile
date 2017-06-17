@@ -27,6 +27,7 @@ CFILE			=	main.c \
 					ft_strtrim_extended.c \
 					ft_atof.c \
 					build.c \
+					building_algo.c \
 					build_win.c \
 					build_amblight.c \
 					build_cam.c

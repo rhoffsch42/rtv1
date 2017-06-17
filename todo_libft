@@ -1,3 +1,16 @@
 enlever la protection du NULL sur putendl / putstr
 ft_putchar_color
 refaire strncmp? cf    while (...) { return (...); }
+strdup pas protege: faire le define MALLOC_FAIL
+	pb: cela implique d utiliser exit() dans strdup
+	-> faire une MACRO ou fonction ou changer errexit comme ceci:
+		CHECK_MALLOC((ptr = strdup("hi")));
+		# define CHECK_MALLOC(x)		if ((x) == NULL) { ft_errexit("Error: malloc failed\n", RED, MALLOC_FAIL); }
+	pb: define interdit par la norme?
+	-> le transformer en fonction :
+		ft_check_malloc((ptr = strdup("hi")));
+		void	ft_check_malloc(void *ptr)
+		{
+			if (ptr == NULL)
+				ft_errexit("Error: malloc failed\n", RED, MALLOC_FAIL);
+		}

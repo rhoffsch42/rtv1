@@ -18,6 +18,7 @@
 # include <math.h>
 
 # define ENDL			ft_putchar(10);
+# define SPACE			ft_putchar(32);
 
 # define DEF_WIN_TITLE	"Default title"
 # define DEF_WIN_X		800
@@ -188,14 +189,13 @@ void					get_scene(t_env *e, int ac, char **av);
 int						is_empty(LIST_TYPE ptr);
 LIST_TYPE				remove_list(LIST_TYPE ptr, int (f)(LIST_TYPE));
 void					error_yaml(char *s1, char *s2);
+
 void					build_objects(t_env *e, t_str *ptr);
-int						get_token_index(char **tokens, int tok_amount, char *str, char *sep);
-int						get_chart_index(t_env *e, char *str);
+t_str					*building_algo(t_env *e, t_str *ptr, char **tok, int (**func)(t_env*, t_str*));
 t_str					*check_no_value(t_str *ptr);
 t_str					*build_win(t_env *e, t_str *ptr);
 t_str					*build_amblight(t_env *e, t_str *ptr);
 t_str					*build_cam(t_env *e, t_str *ptr);
-
 
 char					*ft_strtrim_extended(const char *s);
 float					ft_atof(char *s);

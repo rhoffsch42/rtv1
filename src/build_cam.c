@@ -1,10 +1,14 @@
 #include <rtv1.h>
 
+/* build_pos
+ * 1er check: ne start pas par "- " ou n'est que "- "
+ */
+
 static int		build_pos(t_env *e, t_str *ptr)
 {
+	ft_putendl("- - - build_pos");
 	static char		o = 0;
 
-	//if ne start pas par "- " || n'est que "- "
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
@@ -21,11 +25,15 @@ static int		build_pos(t_env *e, t_str *ptr)
 	return (0);
 }
 
+/* build_rot
+ * 1er check: ne start pas par "- " ou n'est que "- "
+ */
+
 static int		build_rot(t_env *e, t_str *ptr)
 {
+	ft_putendl("- - - build_rot");
 	static char		o = 0;
 
-	//if ne start pas par "- " || n'est que "- "
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
@@ -42,11 +50,15 @@ static int		build_rot(t_env *e, t_str *ptr)
 	return (1);
 }
 
+/* build_step
+ * 1er check: ne start pas par "- " ou n'est que "- "
+ */
+
 static int		build_step(t_env *e, t_str *ptr)
 {
+	ft_putendl("- - - build_step");
 	static char		o = 0;
 
-	//if ne start pas par "- " || n'est que "- "
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
@@ -64,46 +76,33 @@ static int		build_step(t_env *e, t_str *ptr)
 t_str			*build_cam(t_env *e, t_str *ptr)
 {
 	ft_putendl("- - - - - -build_cam");
-	char	*tok[3];
-	char	*sep;
-	char	i[2];
+	char	**tok;
 	int		(*func[3])(t_env*, t_str*) = { build_pos, build_rot, build_step };
 
 	ptr = check_no_value(ptr);
-	// func[0] = build_pos;
-	// func[1] = build_rot;
-	// func[2] = build_step;
-	tok[0] = YA_POS;
-	tok[1] = YA_ROT;
-	tok[2] = YA_STEP;
-	i[0] = 0;
-	i[1] = -1;//profondeur 1
-	while (i[0] < 11)
-	{
-		// if (i[1] == -1 && (sep = ft_strchr(ptr->str, YA_SEPARATOR)))
-			// i[1] = get_token_index(tok, 3, ptr->str, sep);
-		if (i[1] == -1 && (sep = ft_strchr(ptr->str, YA_SEPARATOR)))
-		{
-			i[1] = get_token_index(tok, 3, ptr->str, sep);
-			if (e->chart[get_chart_index(e, tok[(int)i[1]])].val_amount == 1)
-				i[1] = func[(int)i[1]](e, ptr);
-		}
-		else if (!(i[1] >= 0 && i[1] <= 2))
-			error_yaml(ptr->str, YA_ERROR);
-		else
-			i[1] = func[(int)i[1]](e, ptr);
-		i[0]++;
-		ptr = (i[0] < 11) ? ptr->next : ptr;
-	}
-	// ft_putendl("///////////////////////");
-	// ft_putnbr(e->cam.pos.x);ENDL
-	// ft_putnbr(e->cam.pos.y);ENDL
-	// ft_putnbr(e->cam.pos.z);ENDL
-	// ft_putnbr(e->cam.rot.x);ENDL
-	// ft_putnbr(e->cam.rot.y);ENDL
-	// ft_putnbr(e->cam.rot.z);ENDL
-	// ft_putnbr(e->cam.step.x);ENDL
-	// ft_putnbr(e->cam.step.y);ENDL
-	// ft_putendl("///////////////////////");
+	if ((tok = (char**)malloc(sizeof(char*) * 4)) == NULL)
+		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
+	tok[0] = ft_strdup(YA_POS);
+	tok[1] = ft_strdup(YA_ROT);
+	tok[2] = ft_strdup(YA_STEP);
+	tok[3] = NULL;
+	tok[4] = ft_strdup("\x0B\0");
+	ptr = building_algo(e, ptr, tok, func);
+	ft_strdel(&(tok[0]));
+	ft_strdel(&(tok[1]));
+	ft_strdel(&(tok[2]));
+	ft_strdel(&(tok[4]));
+	free(tok);
+	tok = NULL;
+	ft_putendl("///////////////////////");
+	ft_putnbr(e->cam.pos.x);ENDL
+	ft_putnbr(e->cam.pos.y);ENDL
+	ft_putnbr(e->cam.pos.z);ENDL
+	ft_putnbr(e->cam.rot.x);ENDL
+	ft_putnbr(e->cam.rot.y);ENDL
+	ft_putnbr(e->cam.rot.z);ENDL
+	ft_putnbr(e->cam.step.x);ENDL
+	ft_putnbr(e->cam.step.y);ENDL
+	ft_putendl("///////////////////////");
 	return (ptr);
 }
