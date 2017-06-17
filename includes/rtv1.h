@@ -69,6 +69,7 @@
 # define YA_FLOAT		1
 
 # define YA_ERROR		"Error : bad yaml format"
+# define YA_BAD_TOKEN	"Error : unknow token"
 # define OK				0
 # define BAD_ARGS		0
 # define SDL_FAIL		0
@@ -189,6 +190,7 @@ LIST_TYPE				remove_list(LIST_TYPE ptr, int (f)(LIST_TYPE));
 void					error_yaml(char *s1, char *s2);
 void					build_objects(t_env *e, t_str *ptr);
 int						get_token_index(char **tokens, int tok_amount, char *str, char *sep);
+int						get_chart_index(t_env *e, char *str);
 t_str					*check_no_value(t_str *ptr);
 t_str					*build_win(t_env *e, t_str *ptr);
 t_str					*build_amblight(t_env *e, t_str *ptr);

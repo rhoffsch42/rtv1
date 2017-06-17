@@ -2,7 +2,7 @@
 
 void		error_yaml(char *s1, char *s2)
 {
-	ft_putendl("............");
+	ft_putendl("________ERROR YAML________");
 	ft_putendl(s1);
 	ft_errexit(s2, YELLOW, YA_BAD_FORMAT);
 }
@@ -32,7 +32,23 @@ int		get_token_index(char **tokens, int tok_amount, char *str, char *sep)
 	}
 	if (i >= tok_amount)
 		error_yaml(str, YA_ERROR);
+	sep[0] = YA_SEPARATOR;
 	return (i);
+}
+
+int		get_chart_index(t_env *e, char *str)
+{
+	int		i;
+
+	i = 0;
+	while (i < YA_CHART_AMT)
+	{
+		if (ft_strcmp(e->chart[i].key_name, str) == 0)
+			return (i);
+		i++;
+	}
+	error_yaml(str, YA_BAD_TOKEN);
+	return (-1);
 }
 
 void		build_objects(t_env *e, t_str *ptr)
