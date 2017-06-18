@@ -80,19 +80,19 @@ void	get_scene(t_env *e, int ac, char **av)
 	build_objects(e, lines);
 
 
-	t_str	*ptr;
-	ptr = lines;
-	while (ptr)
-	{
-		ft_putendl(ptr->str);
-		ptr = ptr->next;
-	}
-	if (lines == NULL)
-		ft_putendl("null");
-	ft_putendl("dsds");
-	char *pttr;
-	pttr = YA_TITLE;
-	ft_putendl(pttr);
+	// t_str	*ptr;
+	// ptr = lines;
+	// while (ptr)
+	// {
+	// 	ft_putendl(ptr->str);
+	// 	ptr = ptr->next;
+	// }
+	// if (lines == NULL)
+	// 	ft_putendl("null");
+	// ft_putendl("dsds");
+	// char *pttr;
+	// pttr = YA_TITLE;
+	// ft_putendl(pttr);
 	// int i = 0;
 	// while (i < YA_CHART_AMT)
 	// {

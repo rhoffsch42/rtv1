@@ -31,7 +31,11 @@ CFILE			=	main.c \
 					build_win.c \
 					build_amblight.c \
 					build_cam.c \
-					build_light.c
+					build_light.c \
+					build_cone.c \
+					build_cylinder.c \
+					build_plan.c \
+					build_sphere.c
 
 HFILE			=	rtv1.h
 

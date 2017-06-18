@@ -22,13 +22,13 @@ void	init_yaml_chart(t_env *e)
 	e->chart[3] = (t_chart){YA_LIGHT, \
 		3, YA_CHAR, Y_POS | Y_ROT | Y_INTENSITY, (void*)build_light};
 	e->chart[4] = (t_chart){YA_CONE, \
-		4, YA_CHAR, Y_POS | Y_ROT | Y_COLOR | Y_ANGLE, (void*)build_win};
+		4, YA_CHAR, Y_POS | Y_ROT | Y_COLOR | Y_ANGLE, (void*)build_cone};
 	e->chart[5] = (t_chart){YA_PLAN, \
-		3, YA_CHAR, Y_POS | Y_ROT | Y_COLOR, (void*)build_win};
+		3, YA_CHAR, Y_POS | Y_ROT | Y_COLOR, (void*)build_plan};
 	e->chart[6] = (t_chart){YA_SPHERE, \
-		4, YA_CHAR, Y_POS | Y_ROT | Y_COLOR | Y_RAY, (void*)build_win};
+		4, YA_CHAR, Y_POS | Y_ROT | Y_COLOR | Y_RAY, (void*)build_sphere};
 	e->chart[7] = (t_chart){YA_CYLINDER, \
-		4, YA_CHAR, Y_POS | Y_ROT | Y_COLOR | Y_RAY, (void*)build_win};
+		4, YA_CHAR, Y_POS | Y_ROT | Y_COLOR | Y_RAY, (void*)build_cylinder};
 	e->chart[8] = (t_chart){YA_TITLE, 1, YA_CHAR, 0, (void*)build_win};
 	e->chart[9] = (t_chart){YA_SIZE, 2, YA_FLOAT, 0, (void*)build_win};
 	e->chart[10] = (t_chart){YA_POS, 3, YA_FLOAT, 0, (void*)build_win};

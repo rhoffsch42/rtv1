@@ -5,6 +5,13 @@ window:
 #        - 1080
     title: rtv1 room
 ambiantlight: 0.56 #dsdsd
+window:
+    size:
+        - 192.22
+        - -108
+#        - 1080
+    title: rtv1 room1
+ambiantlight: 0.161 #dsdsd
 #dsdsd
 ##
 #
@@ -23,7 +30,18 @@ cam:
     step:
         - 7
         - 8
-
+cam:
+    pos:
+        - 11
+        - -21#dsdsd
+        - 31
+    rot:
+        - 41
+        - 51
+        - 61
+    step:
+        - 71
+        - 81
 light:
     pos:
         - -1
@@ -34,59 +52,124 @@ light:
         - 5
         - 6
     intensity: 7
+light:
+    pos:
+        - -11
+        - 21
+        - -31
+    rot:
+        - 41
+        - 51
+        - 61
+    intensity: 71
 
 cone:
     pos:
-        - 3
-        - 3
-        - 3
+        - 9
+        - 8
+        - 7
     rot:
-        - 3
-        - 3
-        - 3
+        - 6
+        - 5
+        - 4
     color:
         - 3
-        - 3
-        - 3
-    angle: 30
+        - 2
+        - 1
+    angle: 0
+cone:
+    pos:
+        - 91
+        - 81
+        - 71
+    rot:
+        - 61
+        - 51
+        - 41
+    color:
+        - 31
+        - 21
+        - 11
+    angle: 0111
 cylinder:
     pos:
-        - 4
-        - 4
-        - 4
+        - 11
+        - 22
+        - 33
     rot:
-        - 4
-        - 4
-        - 4
+        - 44
+        - 55
+        - 66
     color:
-        - 4
-        - 4
-        - 4
-    ray: 40
+        - 77
+        - 88
+        - 99
+    ray: 100
+cylinder:
+    pos:
+        - 111
+        - 221
+        - 331
+    rot:
+        - 441
+        - 551
+        - 661
+    color:
+        - 771
+        - 881
+        - 991
+    ray: 1001
 plan:
     pos:
-        - 5
-        - 5
-        - 5
+        - 99
+        - 88
+        - 77
     rot:
-        - 5
-        - 5
-        - 5
+        - 66
+        - 55
+        - 44
     color:
-        - 5
-        - 5
-        - 5
+        - 33
+        - 22
+        - 11
+plan:
+    pos:
+        - 991
+        - 881
+        - 771
+    rot:
+        - 661
+        - 551
+        - 441
+    color:
+        - 331
+        - 221
+        - 111
 sphere:
     pos:
-        - 6
-        - 6
-        - 6
+        - 12
+        - 23
+        - 34
     rot:
-        - 6
-        - 6
-        - 6
+        - 45
+        - 56
+        - 67
     color:
-        - 6
-        - 6
-        - 6
-    ray: 60
+        - 78
+        - 89
+        - 90
+    ray: 111
+sphere:
+    pos:
+        - 121
+        - 231
+        - 341
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 781
+        - 891
+        - 901
+    ray: 5

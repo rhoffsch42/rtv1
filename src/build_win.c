@@ -19,7 +19,10 @@ static int		build_size(t_env *e, t_str *ptr)
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
 	if (o == 2)
+	{
+		o = 0;
 		return (-1);
+	}
 	return (0);
 }
 

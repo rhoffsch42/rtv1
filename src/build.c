@@ -24,7 +24,7 @@ void		build_objects(t_env *e, t_str *ptr)
 
 	while (ptr)
 	{
-		ft_putendl("build next");ft_putendl(ptr->str);
+		// ft_putendl("build next");ft_putendl(ptr->str);
 		if ((sep = ft_strchr(ptr->str, YA_SEPARATOR)))
 		{
 			if (sep[1] != 0 && sep[1] != 32)
@@ -33,7 +33,7 @@ void		build_objects(t_env *e, t_str *ptr)
 			int i = 0;
 			while (i < YA_CHART_OBJ)
 			{
-				ft_putchar(':');
+				// ft_putchar(':');
 				if (ft_strcmp(e->chart[i].key_name, ptr->str) == 0)
 				{
 					sep[0] = YA_SEPARATOR;

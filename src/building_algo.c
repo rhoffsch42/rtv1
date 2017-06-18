@@ -41,7 +41,7 @@ static int	get_chart_index(t_env *e, char *str)
 t_str		*building_algo(t_env *e, t_str *ptr, char **tok, \
 			int (**func)(t_env*, t_str*))
 {
-	ft_putendl("_____________BUILDING ALGO_____________");
+	// ft_putendl("_____________BUILDING ALGO_____________");
 	int		i[2];
 	int		tok_len;
 	int		lines;
@@ -49,30 +49,30 @@ t_str		*building_algo(t_env *e, t_str *ptr, char **tok, \
 
 	tok_len = ft_tablen(tok);
 	lines = tok[tok_len + 1][0];
-	ft_putnbr(tok_len);SPACE
-	ft_putnbr(lines);ENDL
+	// ft_putnbr(tok_len);SPACE
+	// ft_putnbr(lines);ENDL
 	i[0] = 0;
 	i[1] = -1;
 	while (i[0] < lines)
 	{
-		ft_putendl("_________________________________");
-		ft_putendl(ptr->str);
-		ft_putnbr(i[0]);ENDL
+		// ft_putendl("_________________________________");
+		// ft_putendl(ptr->str);
+		// ft_putnbr(i[0]);ENDL
 		if (i[1] == -1 && (sep = ft_strchr(ptr->str, YA_SEPARATOR)))
 		{
-			ft_putstr("i[1]: ");
+			// ft_putstr("i[1]: ");
 			i[1] = get_token_index(tok, tok_len, ptr->str, sep);
-			ft_putnbr(i[1]);SPACE
+			// ft_putnbr(i[1]);SPACE
 			if (e->chart[get_chart_index(e, tok[i[1]])].val_amount == 1)
 				i[1] = (func[i[1]])(e, ptr);
-			ft_putnbr(i[1]);ENDL
-			ft_putendl("OK");
+			// ft_putnbr(i[1]);ENDL
+			// ft_putendl("OK");
 		}
 		else if (!(i[1] >= 0 && i[1] < lines))
 			error_yaml(ptr->str, YA_ERROR);
 		else
 			i[1] = func[i[1]](e, ptr);
-		ft_putendl("\t\t\tinc");
+		// ft_putendl("\t\t\tinc");
 		i[0]++;
 		ptr = (i[0] < lines) ? ptr->next : ptr;
 	}

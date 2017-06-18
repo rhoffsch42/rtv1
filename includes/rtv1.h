@@ -198,6 +198,10 @@ t_str					*build_win(t_env *e, t_str *ptr);
 t_str					*build_amblight(t_env *e, t_str *ptr);
 t_str					*build_cam(t_env *e, t_str *ptr);
 t_str					*build_light(t_env *e, t_str *ptr);
+t_str					*build_cone(t_env *e, t_str *ptr);
+t_str					*build_cylinder(t_env *e, t_str *ptr);
+t_str					*build_plan(t_env *e, t_str *ptr);
+t_str					*build_sphere(t_env *e, t_str *ptr);
 
 char					*ft_strtrim_extended(const char *s);
 float					ft_atof(char *s);
