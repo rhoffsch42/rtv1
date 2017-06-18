@@ -20,7 +20,7 @@ void	init_yaml_chart(t_env *e)
 	e->chart[2] = (t_chart){YA_CAM, \
 		3, YA_CHAR, Y_POS | Y_ROT | Y_STEP, (void*)build_cam};
 	e->chart[3] = (t_chart){YA_LIGHT, \
-		3, YA_CHAR, Y_POS | Y_ROT | Y_INTENSITY, (void*)build_win};
+		3, YA_CHAR, Y_POS | Y_ROT | Y_INTENSITY, (void*)build_light};
 	e->chart[4] = (t_chart){YA_CONE, \
 		4, YA_CHAR, Y_POS | Y_ROT | Y_COLOR | Y_ANGLE, (void*)build_win};
 	e->chart[5] = (t_chart){YA_PLAN, \
@@ -72,7 +72,7 @@ void	init_sdl(t_sdl *sdl)
 	// if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	// 	ft_errexit(SDL_GetError(), RED, SDL_FAIL);
 	// ft_putendl(sdl->title);
-	// sdl->win = SDL_CreateWindow(sdl->title, SDL_WINDOWPOS_CENTERED, 
+	// sdl->win = SDL_CreateWindow(sdl->title, SDL_WINDOWPOS_CENTERED,
 	// 	SDL_WINDOWPOS_CENTERED, sdl->win_x, sdl->win_y, SDL_WINDOW_RESIZABLE);
 	// SDL_ShowWindow(sdl->win);
 	// SDL_RaiseWindow(sdl->win);

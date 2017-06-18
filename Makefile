@@ -30,7 +30,8 @@ CFILE			=	main.c \
 					building_algo.c \
 					build_win.c \
 					build_amblight.c \
-					build_cam.c
+					build_cam.c \
+					build_light.c
 
 HFILE			=	rtv1.h
 

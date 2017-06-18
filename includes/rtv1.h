@@ -16,6 +16,7 @@
 # include <libft.h>
 // # include <SDL2/SDL.h>
 # include <math.h>
+# include <stdio.h>
 
 # define ENDL			ft_putchar(10);
 # define SPACE			ft_putchar(32);
@@ -196,6 +197,7 @@ t_str					*check_no_value(t_str *ptr);
 t_str					*build_win(t_env *e, t_str *ptr);
 t_str					*build_amblight(t_env *e, t_str *ptr);
 t_str					*build_cam(t_env *e, t_str *ptr);
+t_str					*build_light(t_env *e, t_str *ptr);
 
 char					*ft_strtrim_extended(const char *s);
 float					ft_atof(char *s);
