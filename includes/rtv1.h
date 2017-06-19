@@ -14,7 +14,7 @@
 # define RTV1_H
 
 # include <libft.h>
-// # include <SDL2/SDL.h>
+# include <SDL2/SDL.h>
 # include <math.h>
 # include <stdio.h>
 
@@ -167,8 +167,8 @@ typedef struct			s_sdl
 	int					win_x;
 	int					win_y;
 	char				*title;
-	// SDL_Window			*win;
-	// SDL_Surface			*surface;
+	SDL_Window			*win;
+	SDL_Surface			*surface;
 }						t_sdl;
 
 typedef struct			s_env

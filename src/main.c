@@ -87,10 +87,10 @@ int		main(int ac, char **av)
 	ft_putendl("rtv1");
 	e = init_env();
 	get_scene(e, ac, av);
-	init_sdl(e->sdl);
 	adjust_objects(e);
-
 	print_objects(e);
+	init_sdl(e->sdl);
+
 	//  raytracer(e);
 	return (OK);
 }
