@@ -1,4 +1,3 @@
-check pk ya (int)atof() sur des val qui sont en float
 
 
 possible: construire le tableau de tokens (tok[]) via la charte et les operations binaires

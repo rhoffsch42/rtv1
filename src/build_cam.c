@@ -12,11 +12,11 @@ static int		build_pos(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->cam.pos.x = (int)ft_atof(ptr->str + 2);
+		e->cam.pos.x = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->cam.pos.y = (int)ft_atof(ptr->str + 2);
+		e->cam.pos.y = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 2)
-		e->cam.pos.z = (int)ft_atof(ptr->str + 2);
+		e->cam.pos.z = ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
@@ -40,11 +40,11 @@ static int		build_rot(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->cam.rot.x = (int)ft_atof(ptr->str + 2);
+		e->cam.rot.x = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->cam.rot.y = (int)ft_atof(ptr->str + 2);
+		e->cam.rot.y = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 2)
-		e->cam.rot.z = (int)ft_atof(ptr->str + 2);
+		e->cam.rot.z = ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
@@ -68,9 +68,9 @@ static int		build_step(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->cam.step.x = (int)ft_atof(ptr->str + 2);
+		e->cam.step.x = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->cam.step.y = (int)ft_atof(ptr->str + 2);
+		e->cam.step.y = ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;

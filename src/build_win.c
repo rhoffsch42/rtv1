@@ -12,9 +12,9 @@ static int		build_size(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->sdl->win_x = (int)ft_atof(ptr->str + 2);
+		e->sdl->win_x = (int)ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->sdl->win_y = (int)ft_atof(ptr->str + 2);
+		e->sdl->win_y = (int)ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;

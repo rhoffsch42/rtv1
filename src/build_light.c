@@ -12,11 +12,11 @@ static int		build_pos(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->lights->pos.x = (int)ft_atof(ptr->str + 2);
+		e->lights->pos.x = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->lights->pos.y = (int)ft_atof(ptr->str + 2);
+		e->lights->pos.y = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 2)
-		e->lights->pos.z = (int)ft_atof(ptr->str + 2);
+		e->lights->pos.z = ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
@@ -40,11 +40,11 @@ static int		build_rot(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->lights->rot.x = (int)ft_atof(ptr->str + 2);
+		e->lights->rot.x = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->lights->rot.y = (int)ft_atof(ptr->str + 2);
+		e->lights->rot.y = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 2)
-		e->lights->rot.z = (int)ft_atof(ptr->str + 2);
+		e->lights->rot.z = ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
@@ -67,12 +67,7 @@ static int		build_intensity(t_env *e, t_str *ptr)
 
 	if ((sep = ft_strchr(ptr->str, YA_SEPARATOR)) == NULL || sep[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
-	e->lights->intensity = ft_atof(sep + 2);
-	if (e->lights->intensity > (float)1)
-	{
-		ft_putstr_color("Light intensity topped at 1.0\n", MAGENTA);
-		e->lights->intensity = 1.0000;
-	}
+	e->lights->intensity = ft_atof(secure_atof(sep + 2));
 	return (-1);
 }
 

@@ -1,3 +1,4 @@
+ft_strndup(char *s, int start, int end);
 enlever la protection du NULL sur putendl / putstr
 ft_putchar_color
 refaire strncmp? cf    while (...) { return (...); }

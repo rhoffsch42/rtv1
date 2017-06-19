@@ -4,14 +4,14 @@ window:
         - -1080
 #        - 1080
     title: rtv1 room
-ambiantlight: 0.56 #dsdsd
+ambiantlight: 0.54456 #dsdsd
 window:
     size:
-        - 192.22
-        - -108
+        - 22.22
+        - 085
 #        - 1080
-    title: rtv1 room1
-ambiantlight: 0.161 #dsdsd
+    title: This title is too long, the program will trunc it soon.
+ambiantlight: 0.44161 #dsdsd
 #dsdsd
 ##
 #
@@ -76,7 +76,7 @@ cone:
         - 3
         - 2
         - 1
-    angle: 0
+    angle: 2145554
 cone:
     pos:
         - 91

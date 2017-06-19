@@ -20,20 +20,24 @@
 
 # define ENDL			ft_putchar(10);
 # define SPACE			ft_putchar(32);
+# define LIST_TYPE		t_str*
 
 # define DEF_WIN_TITLE	"Default title"
 # define DEF_WIN_X		800
 # define DEF_WIN_Y		600
-# define MAX_WIN_X		800
-# define MAX_WIN_Y		600
-# define LIST_TYPE		t_str*
+# define MAX_WIN_X		1920
+# define MAX_WIN_Y		1080
+# define MIN_WIN_X		800
+# define MIN_WIN_Y		600
+# define FLOAT_MAX_LEN	7
+# define COLOR_MAX		255
+# define TITLE_MAX_LEN	50
+# define TITLE_TRUNC	"[...]"
 
 # define YA_SEPARATOR	':'
 # define YA_LIST		"- "
 # define YA_COMMENT		'#'
-/*
- * level 1-8 objects
- */
+
 # define YA_WIN			"window"
 # define YA_AMBLIGHT	"ambiantlight"
 # define YA_CAM			"cam"
@@ -42,9 +46,7 @@
 # define YA_PLAN		"plan"
 # define YA_SPHERE		"sphere"
 # define YA_CYLINDER	"cylinder"
-/*
- * level 1-9 +8 objects
- */
+
 # define YA_TITLE		"title"
 # define YA_SIZE		"size"
 # define YA_POS			"pos"
@@ -72,6 +74,7 @@
 
 # define YA_ERROR		"Error : bad yaml format"
 # define YA_BAD_TOKEN	"Error : unknow token"
+# define YA_BAD_FLOAT	"Error : invalid float value"
 # define OK				0
 # define BAD_ARGS		0
 # define SDL_FAIL		0
@@ -190,6 +193,7 @@ void					get_scene(t_env *e, int ac, char **av);
 int						is_empty(LIST_TYPE ptr);
 LIST_TYPE				remove_list(LIST_TYPE ptr, int (f)(LIST_TYPE));
 void					error_yaml(char *s1, char *s2);
+char					*secure_atof(char *s);
 
 void					build_objects(t_env *e, t_str *ptr);
 t_str					*building_algo(t_env *e, t_str *ptr, char **tok, int (**func)(t_env*, t_str*));
@@ -202,6 +206,7 @@ t_str					*build_cone(t_env *e, t_str *ptr);
 t_str					*build_cylinder(t_env *e, t_str *ptr);
 t_str					*build_plan(t_env *e, t_str *ptr);
 t_str					*build_sphere(t_env *e, t_str *ptr);
+void					adjust_objects(t_env *e);
 
 char					*ft_strtrim_extended(const char *s);
 float					ft_atof(char *s);

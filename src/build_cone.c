@@ -12,11 +12,11 @@ static int		build_pos(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->cones->pos.x = (int)ft_atof(ptr->str + 2);
+		e->cones->pos.x = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->cones->pos.y = (int)ft_atof(ptr->str + 2);
+		e->cones->pos.y = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 2)
-		e->cones->pos.z = (int)ft_atof(ptr->str + 2);
+		e->cones->pos.z = ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
@@ -40,11 +40,11 @@ static int		build_rot(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->cones->rot.x = (int)ft_atof(ptr->str + 2);
+		e->cones->rot.x = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->cones->rot.y = (int)ft_atof(ptr->str + 2);
+		e->cones->rot.y = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 2)
-		e->cones->rot.z = (int)ft_atof(ptr->str + 2);
+		e->cones->rot.z = ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
@@ -68,11 +68,11 @@ static int		build_color(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->cones->color.x = (int)ft_atof(ptr->str + 2);
+		e->cones->color.x = (int)ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->cones->color.y = (int)ft_atof(ptr->str + 2);
+		e->cones->color.y = (int)ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 2)
-		e->cones->color.z = (int)ft_atof(ptr->str + 2);
+		e->cones->color.z = (int)ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
@@ -95,7 +95,7 @@ static int		build_angle(t_env *e, t_str *ptr)
 
 	if ((sep = ft_strchr(ptr->str, YA_SEPARATOR)) == NULL || sep[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
-	e->cones->angle = ft_atof(sep + 2);
+	e->cones->angle = ft_atof(secure_atof(sep + 2));
 	return (-1);
 }
 

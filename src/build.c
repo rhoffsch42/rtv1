@@ -18,6 +18,35 @@ t_str	*check_no_value(t_str *ptr)
 	return (ptr->next);
 }
 
+char		*secure_atof(char *s)
+{
+	int		i;
+	int		len;
+	int		point;
+
+	point = 0;
+	i = 0;
+	if (s[i] == '+' || s[i] == '-')
+		i++;
+	len = (i == 0) ? ft_strlen(s) : ft_strlen(s) - 1;
+	if (len > FLOAT_MAX_LEN)
+		error_yaml(s, YA_BAD_FLOAT);
+	while (s[i])
+	{
+		if (s[i] == '.')
+		{
+			point++;
+			i++;
+		}
+		if (!ft_isdigit(s[i]))
+			error_yaml(s, YA_BAD_FLOAT);
+		i++;
+	}
+	if (point > 1)
+		error_yaml(s, YA_BAD_FLOAT);
+	return (s);
+}
+
 void		build_objects(t_env *e, t_str *ptr)
 {
 	char	*sep;

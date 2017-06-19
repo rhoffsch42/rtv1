@@ -12,6 +12,71 @@
 
 #include <rtv1.h>
 
+void	print_vector3(t_vector3	vector)
+{
+	printf("%d\t", (int)vector.x);
+	printf("%d\t", (int)vector.y);
+	printf("%d\t", (int)vector.z);
+}
+void	print_vector2(t_vector2	vector)
+{
+	printf("%d\t", (int)vector.x);
+	printf("%d\t", (int)vector.y);
+}
+
+void	print_objects(t_env *e)
+{
+	ENDL
+	ENDL
+	ENDL
+	printf("amblight\t%f\n", e->amblight);
+	printf("window  \t%d\t%d\t\"%s\"\n", e->sdl->win_x, e->sdl->win_y, e->sdl->title);
+	while (e->spheres)
+	{
+		printf("sphere  \t");
+		print_vector3(e->spheres->pos);
+		print_vector3(e->spheres->rot);
+		print_vector3(e->spheres->color);
+		printf("%d\n",(int) e->spheres->r);
+		e->spheres = e->spheres->next;
+	}
+	while (e->cylinders)
+	{
+		printf("cylinder\t");
+		print_vector3(e->cylinders->pos);
+		print_vector3(e->cylinders->rot);
+		print_vector3(e->cylinders->color);
+		printf("%d\n",(int) e->cylinders->r);
+		e->cylinders = e->cylinders->next;
+	}
+	while (e->cones)
+	{
+		printf("cone    \t");
+		print_vector3(e->cones->pos);
+		print_vector3(e->cones->rot);
+		print_vector3(e->cones->color);
+		printf("%f\n", e->cones->angle);
+		e->cones = e->cones->next;
+	}
+	while (e->plans)
+	{
+		printf("plan    \t");
+		print_vector3(e->plans->pos);
+		print_vector3(e->plans->rot);
+		print_vector3(e->plans->color);
+		printf("\n");
+		e->plans = e->plans->next;
+	}
+	while (e->lights)
+	{
+		printf("lights  \t");
+		print_vector3(e->lights->pos);
+		print_vector3(e->lights->rot);
+		printf("%f\n", e->lights->intensity);
+		e->lights = e->lights->next;
+	}
+}
+
 int		main(int ac, char **av)
 {
 	// sdl_test();exit(0);
@@ -22,7 +87,10 @@ int		main(int ac, char **av)
 	ft_putendl("rtv1");
 	e = init_env();
 	get_scene(e, ac, av);
-	 init_sdl(e->sdl);
+	init_sdl(e->sdl);
+	adjust_objects(e);
+
+	print_objects(e);
 	//  raytracer(e);
 	return (OK);
 }

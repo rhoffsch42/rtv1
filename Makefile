@@ -35,7 +35,8 @@ CFILE			=	main.c \
 					build_cone.c \
 					build_cylinder.c \
 					build_plan.c \
-					build_sphere.c
+					build_sphere.c \
+					adjust_objects.c
 
 HFILE			=	rtv1.h
 

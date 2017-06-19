@@ -12,11 +12,11 @@ static int		build_pos(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->plans->pos.x = (int)ft_atof(ptr->str + 2);
+		e->plans->pos.x = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->plans->pos.y = (int)ft_atof(ptr->str + 2);
+		e->plans->pos.y = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 2)
-		e->plans->pos.z = (int)ft_atof(ptr->str + 2);
+		e->plans->pos.z = ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
@@ -40,11 +40,11 @@ static int		build_rot(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->plans->rot.x = (int)ft_atof(ptr->str + 2);
+		e->plans->rot.x = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->plans->rot.y = (int)ft_atof(ptr->str + 2);
+		e->plans->rot.y = ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 2)
-		e->plans->rot.z = (int)ft_atof(ptr->str + 2);
+		e->plans->rot.z = ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
@@ -68,11 +68,11 @@ static int		build_color(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->plans->color.x = (int)ft_atof(ptr->str + 2);
+		e->plans->color.x = (int)ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 1)
-		e->plans->color.y = (int)ft_atof(ptr->str + 2);
+		e->plans->color.y = (int)ft_atof(secure_atof(ptr->str + 2));
 	else if (o == 2)
-		e->plans->color.z = (int)ft_atof(ptr->str + 2);
+		e->plans->color.z = (int)ft_atof(secure_atof(ptr->str + 2));
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
