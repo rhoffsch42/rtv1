@@ -16,8 +16,6 @@ PATH_SDL_IMG	=	SDL2_image-2.0.1
 
 SDL_A			=	$(SDL_DST)/lib/libSDL2.a
 SDL_IMG_A		=	$(SDL_DST)/lib/libSDL2_image.a
-LIBS			=	$(SDL_A) \
-					$(SDL_IMG_A)
 
 ifneq ("$(shell test -e $(PATH_SDL).tar.gz && echo ex)","ex")
 DL_SDL = @curl https://www.libsdl.org/release/SDL2-2.0.5.tar.gz -o $(PATH_SDL).tar.gz
