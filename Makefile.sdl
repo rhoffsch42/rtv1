@@ -58,7 +58,6 @@ clean:
 	rm -rf $(SDL_DST)
 
 fclean: clean
-	rm -rf $(SDL_DST)
 	rm -rf $(PATH_SDL).tar.gz
 	rm -rf $(PATH_SDL_IMG).tar.gz
 
