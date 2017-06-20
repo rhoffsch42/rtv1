@@ -17,6 +17,8 @@ PATH_SDL_IMG	=	SDL2_image-2.0.1
 SDL_A			=	$(SDL_DST)/lib/libSDL2.a
 SDL_IMG_A		=	$(SDL_DST)/lib/libSDL2_image.a
 
+FIX_DIR			=	src/video/mir/
+
 ifneq ("$(shell test -e $(PATH_SDL).tar.gz && echo ex)","ex")
 DL_SDL = @curl https://www.libsdl.org/release/SDL2-2.0.5.tar.gz -o $(PATH_SDL).tar.gz
 else
@@ -34,13 +36,15 @@ endif
 all: compile
 
 compile: $(SDL_A) $(SDL_IMG_A)
-	$(MAKE) $<
+	@$(MAKE) $<
 
 $(SDL_A):
 	@echo "\033[32mCompiling $(SDL_A) ...\033[0m"
 	$(DL_SDL)
 	@mkdir -p $(SDL_DST)
 	@tar -xf $(PATH_SDL).tar.gz
+	cp fix_sdl/SDL_mirsym.h $(PATH_SDL)/src/video/mir/SDL_mirsym.h
+	cp fix_sdl/SDL_mirvideo.c $(PATH_SDL)/src/video/mir/SDL_mirvideo.c
 	@cd $(PATH_SDL) && ./configure --prefix=`cd ../$(SDL_DST) && pwd` && make -j 8 && make -j 8 install
 	@rm -rf $(PATH_SDL)
 
