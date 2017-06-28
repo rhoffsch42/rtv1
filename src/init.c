@@ -78,5 +78,4 @@ void	init_sdl(t_sdl *sdl)
 	sdl->surface = SDL_GetWindowSurface(sdl->win);
 	SDL_FillRect(sdl->surface, NULL, 0x000000);
 	SDL_UpdateWindowSurface(sdl->win);
-	SDL_Delay(5000);
 }

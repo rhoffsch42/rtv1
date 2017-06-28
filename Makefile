@@ -35,7 +35,10 @@ CFILE			=	main.c \
 					build_plan.c \
 					build_sphere.c \
 					adjust_objects.c \
-					ft_tabdel.c
+					ft_tabdel.c \
+					raytracer.c \
+					sdl_putpixel.c \
+					calc.c
 
 HFILE			=	rtv1.h
 

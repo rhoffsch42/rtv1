@@ -22,6 +22,8 @@
 # define SPACE			ft_putchar(32);
 # define LIST_TYPE		t_str*
 
+# define RGB(r, g, b)(65536 * (int)(r) + 256 * (int)(g) + (int)(b))
+
 # define DEF_WIN_TITLE	"Default title"
 # define DEF_WIN_X		800
 # define DEF_WIN_Y		600
@@ -77,10 +79,11 @@
 # define YA_BAD_FLOAT	"Error : invalid float value"
 # define OK				0
 # define BAD_ARGS		0
-# define SDL_FAIL		0
 # define OPEN_FAIL		0
 # define MALLOC_FAIL	0
 # define YA_BAD_FORMAT	0
+# define SDL_FAIL		0
+# define SDL_BAD_BPP	0
 
 typedef struct s_env t_env;
 
@@ -184,7 +187,6 @@ typedef struct			s_env
 	t_cylinder			*cylinders;
 }						t_env;
 
-
 ////debug, a delete apres
 int						sdl_test(void);
 int						build_pos1(t_env *e, t_str *ptr, t_vector3 *obj);
@@ -214,6 +216,11 @@ t_str					*build_cylinder(t_env *e, t_str *ptr);
 t_str					*build_plan(t_env *e, t_str *ptr);
 t_str					*build_sphere(t_env *e, t_str *ptr);
 void					adjust_objects(t_env *e);
+
+void					sdl_putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
+void					raytracer(t_env *e);
+t_vector3				substract_vector3(t_vector3 *v1, t_vector3 *v2);
+float					scalar_vector3(t_vector3 *v1, t_vector3 *v2);
 
 char					*ft_strtrim_extended(const char *s);
 float					ft_atof(char *s);
