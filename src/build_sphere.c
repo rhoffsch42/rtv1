@@ -103,8 +103,7 @@ t_str			*build_sphere(t_env *e, t_str *ptr)
 	ft_putendl("- - - - - -build_sphere");
 	t_sphere	*old;
 	char	**tok;
-	int		(*func[4])(t_env*, t_str*) = { build_pos, build_rot, \
-											build_color, build_ray };
+	int		(*func[4])(t_env*, t_str*) = { build_pos, build_rot, build_color, build_ray };
 
 	ptr = check_no_value(ptr);
 	if ((tok = (char**)malloc(sizeof(char*) * (4 + 2))) == NULL)
@@ -120,13 +119,8 @@ t_str			*build_sphere(t_env *e, t_str *ptr)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
 	ptr = building_algo(e, ptr, tok, func);
 	e->spheres->next = old;
-	ft_strdel(&(tok[0]));
-	ft_strdel(&(tok[1]));
-	ft_strdel(&(tok[2]));
-	ft_strdel(&(tok[3]));
 	ft_strdel(&(tok[5]));
-	free(tok);
-	tok = NULL;
+	ft_tabdel(&tok);
 	ft_putendl("///////////////////////");
 	printf("%f\n", e->spheres->pos.x);
 	printf("%f\n", e->spheres->pos.y);

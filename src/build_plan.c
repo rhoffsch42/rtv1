@@ -104,12 +104,8 @@ t_str			*build_plan(t_env *e, t_str *ptr)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
 	ptr = building_algo(e, ptr, tok, func);
 	e->plans->next = old;
-	ft_strdel(&(tok[0]));
-	ft_strdel(&(tok[1]));
-	ft_strdel(&(tok[2]));
 	ft_strdel(&(tok[4]));
-	free(tok);
-	tok = NULL;
+	ft_tabdel(&tok);
 	ft_putendl("///////////////////////");
 	printf("%f\n", e->plans->pos.x);
 	printf("%f\n", e->plans->pos.y);

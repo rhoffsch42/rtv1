@@ -97,12 +97,8 @@ t_str			*build_cam(t_env *e, t_str *ptr)
 	tok[3] = NULL;
 	tok[4] = ft_strdup("\x0B\0");
 	ptr = building_algo(e, ptr, tok, func);
-	ft_strdel(&(tok[0]));
-	ft_strdel(&(tok[1]));
-	ft_strdel(&(tok[2]));
 	ft_strdel(&(tok[4]));
-	free(tok);
-	tok = NULL;
+	ft_tabdel(&tok);
 	ft_putendl("///////////////////////");
 	ft_putnbr(e->cam.pos.x);ENDL
 	ft_putnbr(e->cam.pos.y);ENDL

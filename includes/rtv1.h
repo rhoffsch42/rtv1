@@ -184,8 +184,15 @@ typedef struct			s_env
 	t_cylinder			*cylinders;
 }						t_env;
 
+
 ////debug, a delete apres
 int						sdl_test(void);
+int						build_pos1(t_env *e, t_str *ptr, t_vector3 *obj);
+int						build_rot1(t_env *e, t_str *ptr, t_vector3 *obj);
+int						build_color1(t_env *e, t_str *ptr, t_vector3 *obj);
+int						build_ray1(t_env *e, t_str *ptr, float *ray);
+int						fill_vector(char *src, void *ptr, int size);
+t_str					*building_algo1(t_env *e, t_str *ptr, char **tok, int (**func)(char*, void*, int));
 
 t_env					*init_env(void);
 void					init_sdl(t_sdl *sdl);
@@ -210,5 +217,6 @@ void					adjust_objects(t_env *e);
 
 char					*ft_strtrim_extended(const char *s);
 float					ft_atof(char *s);
+void					ft_tabdel(char ***tab);
 
 #endif
