@@ -31,49 +31,54 @@ void	print_objects(t_env *e)
 	ENDL
 	printf("amblight\t%f\n", e->amblight);
 	printf("window  \t%d\t%d\t\"%s\"\n", e->sdl->win_x, e->sdl->win_y, e->sdl->title);
-	while (e->spheres)
+	t_sphere	*sph = e->spheres;
+	while (sph)
 	{
 		printf("sphere  \t");
-		print_vector3(e->spheres->pos);
-		print_vector3(e->spheres->rot);
-		print_vector3(e->spheres->color);
-		printf("%d\n",(int) e->spheres->r);
-		e->spheres = e->spheres->next;
+		print_vector3(sph->pos);
+		print_vector3(sph->rot);
+		print_vector3(sph->color);
+		printf("%d\n",(int) sph->r);
+		sph = sph->next;
 	}
-	while (e->cylinders)
+	t_cylinder	*cyl = e->cylinders;
+	while (cyl)
 	{
 		printf("cylinder\t");
-		print_vector3(e->cylinders->pos);
-		print_vector3(e->cylinders->rot);
-		print_vector3(e->cylinders->color);
-		printf("%d\n",(int) e->cylinders->r);
-		e->cylinders = e->cylinders->next;
+		print_vector3(cyl->pos);
+		print_vector3(cyl->rot);
+		print_vector3(cyl->color);
+		printf("%d\n",(int) cyl->r);
+		cyl = cyl->next;
 	}
+	t_cone	*cone = e->cones;
 	while (e->cones)
 	{
 		printf("cone    \t");
-		print_vector3(e->cones->pos);
-		print_vector3(e->cones->rot);
-		print_vector3(e->cones->color);
-		printf("%f\n", e->cones->angle);
-		e->cones = e->cones->next;
+		print_vector3(cone->pos);
+		print_vector3(cone->rot);
+		print_vector3(cone->color);
+		printf("%f\n", cone->angle);
+		cone = cone->next;
 	}
+	t_plan	*plan = e->plans;
 	while (e->plans)
 	{
 		printf("plan    \t");
-		print_vector3(e->plans->pos);
-		print_vector3(e->plans->rot);
-		print_vector3(e->plans->color);
+		print_vector3(plan->pos);
+		print_vector3(plan->rot);
+		print_vector3(plan->color);
 		printf("\n");
-		e->plans = e->plans->next;
+		plan = plan->next;
 	}
-	while (e->lights)
+	t_light	*li = e->lights;
+	while (li)
 	{
 		printf("lights  \t");
-		print_vector3(e->lights->pos);
-		print_vector3(e->lights->rot);
-		printf("%f\n", e->lights->intensity);
-		e->lights = e->lights->next;
+		print_vector3(li->pos);
+		print_vector3(li->rot);
+		printf("%f\n", li->intensity);
+		li = li->next;
 	}
 }
 
@@ -88,10 +93,23 @@ int		main(int ac, char **av)
 	e = init_env();
 	get_scene(e, ac, av);
 	adjust_objects(e);
-	print_objects(e);
+	// print_objects(e);
 	init_sdl(e->sdl);
+	raytracer(e);
 
-	//  raytracer(e);
+	SDL_Event	event;
+	int			escape_pressed = 0;
+	while (escape_pressed == 0)
+	{
+		while (SDL_PollEvent(&event) == 1)
+		{
+			if (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
+			{
+				escape_pressed = 1;
+				break ;
+			}
+		}
+	}
 	return (OK);
 }
 
@@ -119,11 +137,11 @@ int		sdl_test(void)
  			SDL_BlitSurface(image_surface, NULL, window_surface, &((SDL_Rect){0, 400, 10, 10}));
  			SDL_BlitSurface(image_surface, &((SDL_Rect){0, 0, 50, 50}), window_surface, &((SDL_Rect){500, 300, 10, 10}));// seul x et y sont utilise dans le Rect dest
  			SDL_FreeSurface(image_surface);
- 			 SDL_BlitSurface(image_surface, &((SDL_Rect){0, 0, 10, 10}), window_surface, NULL);
- 			 SDL_SetWindowFullscreen(sdl_win, SDL_WINDOW_FULLSCREEN);
- 			 SDL_SetWindowFullscreen(sdl_win, SDL_WINDOW_FULLSCREEN_DESKTOP);
- 			 while (1)
- 			 	;
+ 			SDL_BlitSurface(image_surface, &((SDL_Rect){0, 0, 10, 10}), window_surface, NULL);
+ 			SDL_SetWindowFullscreen(sdl_win, SDL_WINDOW_FULLSCREEN);
+ 			SDL_SetWindowFullscreen(sdl_win, SDL_WINDOW_FULLSCREEN_DESKTOP);
+ 			while (1)
+ 				;
  			SDL_UpdateWindowSurface(sdl_win);
  		}
  		SDL_Delay(5000);
