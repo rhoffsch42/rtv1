@@ -34,7 +34,8 @@ CFILE			=	main.c \
 					build_cylinder.c \
 					build_plan.c \
 					build_sphere.c \
-					adjust_objects.c
+					adjust_objects.c \
+					ft_tabdel.c
 
 HFILE			=	rtv1.h
 

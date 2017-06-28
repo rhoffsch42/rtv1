@@ -60,11 +60,8 @@ t_str	*build_win(t_env *e, t_str *ptr)
 	tok[2] = NULL;
 	tok[3] = ft_strdup("\x04\0");
 	ptr = building_algo(e, ptr, tok, func);
-	ft_strdel(&(tok[0]));
-	ft_strdel(&(tok[1]));
 	ft_strdel(&(tok[3]));
-	free(tok);
-	tok = NULL;
+	ft_tabdel(&tok);
 	ft_putendl("///////////////////////////");
 	ft_putnbr(e->sdl->win_x);ENDL
 	ft_putnbr(e->sdl->win_y);ENDL

@@ -1,3 +1,4 @@
+mettre ft_tabdel.c dans la lib
 ft_strndup(char *s, int start, int end);
 enlever la protection du NULL sur putendl / putstr
 ft_putchar_color

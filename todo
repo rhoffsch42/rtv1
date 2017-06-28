@@ -1,4 +1,8 @@
+refacto fonction build_pos/rot/etc, prendre une &structure en parametre
+ -> pas de doublons de fonctions
 
+refacto remove_list, faire une fonction destructor de la list pour l utiliser en parametre de renove_list
+	norme remove_list
 
 possible: construire le tableau de tokens (tok[]) via la charte et les operations binaires
 	char a = 1;
