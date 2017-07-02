@@ -4,7 +4,7 @@
 ** 1er check: ne start pas par "- " ou n'est que "- "
 */
 
-static int		build_pos(t_env *e, t_str *ptr)
+static int		build_pos_light(t_env *e, t_str *ptr)
 {
 	ft_putendl("- - - build_pos");
 	static char		o = 0;
@@ -32,7 +32,7 @@ static int		build_pos(t_env *e, t_str *ptr)
 ** 1er check: ne start pas par "- " ou n'est que "- "
 */
 
-static int		build_rot(t_env *e, t_str *ptr)
+static int		build_rot_light(t_env *e, t_str *ptr)
 {
 	ft_putendl("- - - build_rot");
 	static char		o = 0;
@@ -71,12 +71,13 @@ static int		build_intensity(t_env *e, t_str *ptr)
 	return (-1);
 }
 
-t_str			*build_light(t_env *e, t_str *ptr)
+t_str			*build_light(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_cone");
+	(void)id;
 	t_light	*old;
 	char	**tok;
-	int		(*func[3])(t_env*, t_str*) = { build_pos, build_rot, build_intensity };
+	int		(*func[3])(t_env*, t_str*) = { build_pos_light, build_rot_light, build_intensity };
 
 	ptr = check_no_value(ptr);
 	if ((tok = (char**)malloc(sizeof(char*) * (3 + 2))) == NULL)

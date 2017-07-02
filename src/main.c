@@ -31,46 +31,6 @@ void	print_objects(t_env *e)
 	ENDL
 	printf("amblight\t%f\n", e->amblight);
 	printf("window  \t%d\t%d\t%d\t%d\t\"%s\"\n", (int)e->sdl->size.x, (int)e->sdl->size.y, (int)e->sdl->mid.x, (int)e->sdl->mid.y, e->sdl->title);
-	t_sphere	*sph = e->spheres;
-	while (sph)
-	{
-		printf("sphere  \t");
-		print_vector3(sph->pos);
-		print_vector3(sph->rot);
-		print_vector3(sph->color);
-		printf("%d\n",(int) sph->r);
-		sph = sph->next;
-	}
-	t_cylinder	*cyl = e->cylinders;
-	while (cyl)
-	{
-		printf("cylinder\t");
-		print_vector3(cyl->pos);
-		print_vector3(cyl->rot);
-		print_vector3(cyl->color);
-		printf("%d\n",(int) cyl->r);
-		cyl = cyl->next;
-	}
-	t_cone	*cone = e->cones;
-	while (cone)
-	{
-		printf("cone    \t");
-		print_vector3(cone->pos);
-		print_vector3(cone->rot);
-		print_vector3(cone->color);
-		printf("%f\n", cone->angle);
-		cone = cone->next;
-	}
-	t_plan	*plan = e->plans;
-	while (plan)
-	{
-		printf("plan    \t");
-		print_vector3(plan->pos);
-		print_vector3(plan->rot);
-		print_vector3(plan->color);
-		printf("\n");
-		plan = plan->next;
-	}
 	t_light	*li = e->lights;
 	while (li)
 	{
@@ -79,6 +39,17 @@ void	print_objects(t_env *e)
 		print_vector3(li->rot);
 		printf("%f\n", li->intensity);
 		li = li->next;
+	}
+	t_obj	*obj = e->objs;
+	char	*tab[4] = {"sphere", "cylinder", "cone", "plan"};
+	while (obj)
+	{
+		printf("%s    \t", tab[(int)(obj->type)]);
+		print_vector3(obj->pos);
+		print_vector3(obj->rot);
+		print_vector3(obj->color);
+		printf("%f\n", obj->param);
+		obj = obj->next;
 	}
 }
 

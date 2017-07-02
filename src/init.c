@@ -59,11 +59,8 @@ t_env	*init_env(void)
 	e->sdl->win = NULL;
 	ft_bzero(&e->cam, sizeof(t_cam));
 	e->amblight = 1;
+	e->objs = NULL;
 	e->lights = NULL;
-	e->spheres = NULL;
-	e->cones = NULL;
-	e->cylinders = NULL;
-	e->plans = NULL;
 	init_yaml_chart(e);
 	return (e);
 }

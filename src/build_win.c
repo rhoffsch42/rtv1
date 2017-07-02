@@ -54,9 +54,10 @@ static int		build_title(t_env *e, t_str *ptr)
 ** on rajoute le nombre de lignes (pour l'objet) needed dans building_algo()
 */
 
-t_str	*build_win(t_env *e, t_str *ptr)
+t_str	*build_win(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_win");
+	(void)id;
 	int		(*func[2])(t_env*, t_str*) = {build_size, build_title};
 	char	**tok;
 

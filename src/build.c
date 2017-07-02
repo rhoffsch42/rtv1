@@ -47,38 +47,31 @@ char		*secure_atof(char *s)
 	return (s);
 }
 
-void		build_objects(t_env *e, t_str *ptr)
+void		build_objects(t_env *e, t_str *p, int id)
 {
-	char	*sep;
+	char	*s;
+	int		i;
 
-	while (ptr)
+	while (p)
 	{
-		// ft_putendl("build next");ft_putendl(ptr->str);
-		if ((sep = ft_strchr(ptr->str, YA_SEPARATOR)))
+		if ((s = ft_strchr(p->str, YA_SEPARATOR)) && !(i = 0))
 		{
-			if (sep[1] != 0 && sep[1] != 32)
-				error_yaml(ptr->str, YA_ERROR);
-			sep[0] = 0;
-			int i = 0;
+			(s[1] != 0 && s[1] != 32) ? error_yaml(p->str, YA_ERROR) : (void)i;
+			s[0] = 0;
 			while (i < YA_CHART_OBJ)
 			{
-				// ft_putchar(':');
-				if (ft_strcmp(e->chart[i].key_name, ptr->str) == 0)
+				if (ft_strcmp(e->chart[i].key_name, p->str) == 0)
 				{
-					sep[0] = YA_SEPARATOR;
-					ptr = (e->chart[i].func(e, ptr));
-					// ft_putendl("OOOOOOOOOO");
-					// ft_putendl(ptr->str);
-					// ft_putendl	("OOOOOOOOOO");
+					s[0] = YA_SEPARATOR;
+					p = (e->chart[i].func(e, p, id++));
 					break ;
 				}
 				i++;
 			}
-			if (i == YA_CHART_OBJ)
-				error_yaml(ptr->str, YA_ERROR);
+			(i == YA_CHART_OBJ) ? error_yaml(p->str, YA_ERROR) : (void)i;
 		}
 		else
-			error_yaml(ptr->str, YA_ERROR);
-		ptr = ptr->next;
+			error_yaml(p->str, YA_ERROR);
+		p = p->next;
 	}
 }

@@ -6,7 +6,7 @@ typedef struct	s_ray
 	t_vector3	dir;
 }				t_ray;
 
-float		intersect_sphere(t_ray *ray, t_sphere *sphere)
+float		intersect_sphere(t_ray *ray, t_obj *obj)
 {
 	t_vector3	dist;
 	float		a;
@@ -17,10 +17,10 @@ float		intersect_sphere(t_ray *ray, t_sphere *sphere)
 	float		res1;
 	float		res2;
 
-	dist = substract_vector3(&(ray->origin), &(sphere->pos));
+	dist = substract_vector3(&(ray->origin), &(obj->pos));
 	a = scalar_vector3(&(ray->dir), &(ray->dir));
 	b = 2 * scalar_vector3(&(ray->dir), &dist);
- 	c = scalar_vector3(&dist, &dist) - (sphere->r * sphere->r);
+ 	c = scalar_vector3(&dist, &dist) - (obj->param * obj->param);
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
 		return (-1);
@@ -39,11 +39,11 @@ float		intersect_sphere(t_ray *ray, t_sphere *sphere)
 void	raytracer(t_env *e)
 {
 	ft_putendl("- - - - - raytracer");
-	t_sphere	*ptr;
+	t_obj		*ptr;
 	int			x;
 	int			y;
 	int			len[2];
-	t_sphere	*sph;
+	t_obj		*sph;
 
 	y = 0;
 	while (y < e->sdl->size.y)
@@ -51,23 +51,26 @@ void	raytracer(t_env *e)
 		x = 0;
 		while (x < e->sdl->size.x)
 		{
-			ptr = e->spheres;
+			ptr = e->objs;
 			sph = NULL;
 			len[0] = -1;
 			while (ptr)
 			{
-				if (sph == NULL || len[0] == -1)
+				if (ptr->type == SPHERE)
 				{
-					sph = ptr;
-					len[0] = intersect_sphere(&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
-				}
-				else
-				{
-					len[1] = intersect_sphere(&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
-					if (len[1] != -1 == len[1] < len[0])
+					if (sph == NULL || len[0] == -1)
 					{
 						sph = ptr;
-						len[0] = len[1];
+						len[0] = intersect_sphere(&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
+					}
+					else
+					{
+						len[1] = intersect_sphere(&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
+						if (len[1] != -1 == len[1] < len[0])
+						{
+							sph = ptr;
+							len[0] = len[1];
+						}
 					}
 				}
 				ptr = ptr->next;

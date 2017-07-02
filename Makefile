@@ -30,10 +30,8 @@ CFILE			=	main.c \
 					build_amblight.c \
 					build_cam.c \
 					build_light.c \
-					build_cone.c \
-					build_cylinder.c \
-					build_plan.c \
-					build_sphere.c \
+					build_objects.c \
+					build_properties.c \
 					adjust_objects.c \
 					ft_tabdel.c \
 					raytracer.c \
@@ -78,7 +76,7 @@ norm:
 	norminette $(SRC) $(HDR)
 
 clean:
-	@rm -f $(OBJ)
+	@rm -rf $(ODIR)
 	@echo "\033[33;33mAll objects \033[33;31mdeleted\033[33;37m"
 
 fclean: clean

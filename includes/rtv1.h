@@ -61,6 +61,11 @@
 # define YA_ANGLE		"angle"
 # define YA_RAY			"ray"
 
+# define SPHERE			0
+# define CYLINDER		1
+# define CONE			2
+# define PLAN			3
+
 # define Y_TITLE		1
 # define Y_SIZE			2
 # define Y_POS			4
@@ -101,7 +106,7 @@ typedef struct			s_chart
 	char				val_amount;
 	char				val_type;
 	int					values;
-	t_str				*(*func)(t_env*, t_str*);
+	t_str				*(*func)(t_env*, t_str*, int);
 }						t_chart;
 
 typedef struct			s_vector2
@@ -119,6 +124,7 @@ typedef struct			s_vector3
 
 typedef struct			s_cam
 {
+	int					id;
 	t_vector3			pos;
 	t_vector3			rot;
 	t_vector2			step;
@@ -126,46 +132,12 @@ typedef struct			s_cam
 
 typedef struct			s_light
 {
+	int					id;
 	t_vector3			pos;
 	t_vector3			rot;
 	float				intensity;
 	struct s_light		*next;
 }						t_light;
-
-typedef struct			s_cone
-{
-	t_vector3			pos;
-	t_vector3			rot;
-	t_vector3			color;
-	float				angle;
-	struct s_cone		*next;
-}						t_cone;
-
-typedef struct			s_cylinder
-{
-	t_vector3			pos;
-	t_vector3			rot;
-	t_vector3			color;
-	float				r;
-	struct s_cylinder	*next;
-}						t_cylinder;
-
-typedef struct			s_plan
-{
-	t_vector3			pos;
-	t_vector3			rot;
-	t_vector3			color;
-	struct s_plan		*next;
-}						t_plan;
-
-typedef struct			s_sphere
-{
-	t_vector3			pos;
-	t_vector3			rot;
-	t_vector3			color;
-	float				r;
-	struct s_sphere		*next;
-}						t_sphere;
 
 typedef struct			s_sdl
 {
@@ -176,27 +148,29 @@ typedef struct			s_sdl
 	SDL_Surface			*surface;
 }						t_sdl;
 
+typedef struct			s_obj
+{
+	int					id;
+	char				type;
+	t_vector3			pos;
+	t_vector3			rot;
+	t_vector3			color;
+	float				param;
+	struct s_obj		*next;
+}						t_obj;
+
 typedef struct			s_env
 {
 	t_chart				chart[YA_CHART_AMT];
 	t_sdl				*sdl;
 	t_cam				cam;
 	float				amblight;
+	t_obj				*objs;
 	t_light				*lights;
-	t_sphere			*spheres;
-	t_cone				*cones;
-	t_plan				*plans;
-	t_cylinder			*cylinders;
 }						t_env;
 
 ////debug, a delete apres
 int						sdl_test(void);
-int						build_pos1(t_env *e, t_str *ptr, t_vector3 *obj);
-int						build_rot1(t_env *e, t_str *ptr, t_vector3 *obj);
-int						build_color1(t_env *e, t_str *ptr, t_vector3 *obj);
-int						build_ray1(t_env *e, t_str *ptr, float *ray);
-int						fill_vector(char *src, void *ptr, int size);
-t_str					*building_algo1(t_env *e, t_str *ptr, char **tok, int (**func)(char*, void*, int));
 
 t_env					*init_env(void);
 void					init_sdl(t_sdl *sdl);
@@ -206,18 +180,24 @@ LIST_TYPE				remove_list(LIST_TYPE ptr, int (f)(LIST_TYPE));
 void					error_yaml(char *s1, char *s2);
 char					*secure_atof(char *s);
 
-void					build_objects(t_env *e, t_str *ptr);
+void					build_objects(t_env *e, t_str *p, int id);
 t_str					*building_algo(t_env *e, t_str *ptr, char **tok, int (**func)(t_env*, t_str*));
 t_str					*check_no_value(t_str *ptr);
-t_str					*build_win(t_env *e, t_str *ptr);
-t_str					*build_amblight(t_env *e, t_str *ptr);
-t_str					*build_cam(t_env *e, t_str *ptr);
-t_str					*build_light(t_env *e, t_str *ptr);
-t_str					*build_cone(t_env *e, t_str *ptr);
-t_str					*build_cylinder(t_env *e, t_str *ptr);
-t_str					*build_plan(t_env *e, t_str *ptr);
-t_str					*build_sphere(t_env *e, t_str *ptr);
+t_str					*build_win(t_env *e, t_str *ptr, int id);
+t_str					*build_amblight(t_env *e, t_str *ptr, int id);
+t_str					*build_cam(t_env *e, t_str *ptr, int id);
+t_str					*build_light(t_env *e, t_str *ptr, int id);
+t_str					*build_cone(t_env *e, t_str *ptr, int id);
+t_str					*build_cylinder(t_env *e, t_str *ptr, int id);
+t_str					*build_plan(t_env *e, t_str *ptr, int id);
+t_str					*build_sphere(t_env *e, t_str *ptr, int id);
 void					adjust_objects(t_env *e);
+int						build_pos(t_env *e, t_str *ptr);
+int						build_rot(t_env *e, t_str *ptr);
+int						build_color(t_env *e, t_str *ptr);
+int						build_param(t_env *e, t_str *ptr);
+
+
 
 void					sdl_putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
 void					raytracer(t_env *e);

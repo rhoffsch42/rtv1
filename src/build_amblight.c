@@ -1,8 +1,9 @@
 #include <rtv1.h>
 
-t_str	*build_amblight(t_env *e, t_str *ptr)
+t_str	*build_amblight(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_amblight");
+	(void)id;
 	char	*sep;
 
 	sep = ptr->str + ft_strlen(YA_AMBLIGHT) + 1;
