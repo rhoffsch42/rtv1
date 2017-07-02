@@ -44,7 +44,7 @@ void	print_objects(t_env *e)
 	char	*tab[4] = {"sphere", "cylinder", "cone", "plan"};
 	while (obj)
 	{
-		printf("%s    \t", tab[(int)(obj->type)]);
+		printf("%s    \t", tab[obj->type]);
 		print_vector3(obj->pos);
 		print_vector3(obj->rot);
 		print_vector3(obj->color);
