@@ -4,7 +4,7 @@
 ** 1er check: ne start pas par "- " ou n'est que "- "
 */
 
-static int		build_pos(t_env *e, t_str *ptr)
+static int		build_pos_cam(t_env *e, t_str *ptr)
 {
 	ft_putendl("- - - build_pos");
 	static char		o = 0;
@@ -32,7 +32,7 @@ static int		build_pos(t_env *e, t_str *ptr)
 ** 1er check: ne start pas par "- " ou n'est que "- "
 */
 
-static int		build_rot(t_env *e, t_str *ptr)
+static int		build_rot_cam(t_env *e, t_str *ptr)
 {
 	ft_putendl("- - - build_rot");
 	static char		o = 0;
@@ -60,7 +60,7 @@ static int		build_rot(t_env *e, t_str *ptr)
 ** 1er check: ne start pas par "- " ou n'est que "- "
 */
 
-static int		build_step(t_env *e, t_str *ptr)
+static int		build_step_cam(t_env *e, t_str *ptr)
 {
 	ft_putendl("- - - build_step");
 	static char		o = 0;
@@ -82,11 +82,12 @@ static int		build_step(t_env *e, t_str *ptr)
 	return (2);
 }
 
-t_str			*build_cam(t_env *e, t_str *ptr)
+t_str			*build_cam(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_cam");
+	(void)id;
 	char	**tok;
-	int		(*func[3])(t_env*, t_str*) = { build_pos, build_rot, build_step };
+	int		(*func[3])(t_env*, t_str*) = { build_pos_cam, build_rot_cam, build_step_cam };
 
 	ptr = check_no_value(ptr);
 	if ((tok = (char**)malloc(sizeof(char*) * 5)) == NULL)
