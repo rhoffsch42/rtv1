@@ -20,7 +20,7 @@
 
 # define ENDL			ft_putchar(10);
 # define SPACE			ft_putchar(32);
-# define LIST_TYPE		t_str*
+# define T_LIST			t_str*
 
 # define RGB(r, g, b)(65536 * (int)(r) + 256 * (int)(g) + (int)(b))
 
@@ -151,7 +151,7 @@ typedef struct			s_sdl
 typedef struct			s_obj
 {
 	int					id;
-	char				type;
+	int					type;
 	t_vector3			pos;
 	t_vector3			rot;
 	t_vector3			color;
@@ -175,8 +175,9 @@ int						sdl_test(void);
 t_env					*init_env(void);
 void					init_sdl(t_sdl *sdl);
 void					get_scene(t_env *e, int ac, char **av);
-int						is_empty(LIST_TYPE ptr);
-LIST_TYPE				remove_list(LIST_TYPE ptr, int (f)(LIST_TYPE));
+int						is_empty(T_LIST ptr);
+T_LIST					del(T_LIST ptr);
+T_LIST					remove_list(T_LIST ptr, int (condition)(T_LIST), T_LIST (del)(T_LIST));
 void					error_yaml(char *s1, char *s2);
 char					*secure_atof(char *s);
 

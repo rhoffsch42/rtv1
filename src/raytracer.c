@@ -6,6 +6,27 @@ typedef struct	s_ray
 	t_vector3	dir;
 }				t_ray;
 
+float		intersect_cylinder(t_ray *ray, t_obj *obj)
+{
+	(void)ray;
+	(void)obj;
+	return (-1);
+}
+
+float		intersect_cone(t_ray *ray, t_obj *obj)
+{
+	(void)ray;
+	(void)obj;
+	return (-1);
+}
+
+float		intersect_plan(t_ray *ray, t_obj *obj)
+{
+	(void)ray;
+	(void)obj;
+	return (-1);
+}
+
 float		intersect_sphere(t_ray *ray, t_obj *obj)
 {
 	t_vector3	dist;
@@ -43,7 +64,8 @@ void	raytracer(t_env *e)
 	int			x;
 	int			y;
 	int			len[2];
-	t_obj		*sph;
+	t_obj		*obj;
+	float		(*intersect[4])(t_ray*, t_obj*) = {intersect_sphere, intersect_cylinder, intersect_cone, intersect_plan};
 
 	y = 0;
 	while (y < e->sdl->size.y)
@@ -52,31 +74,28 @@ void	raytracer(t_env *e)
 		while (x < e->sdl->size.x)
 		{
 			ptr = e->objs;
-			sph = NULL;
+			obj = NULL;
 			len[0] = -1;
 			while (ptr)
 			{
-				if (ptr->type == SPHERE)
+				if (obj == NULL || len[0] == -1)
 				{
-					if (sph == NULL || len[0] == -1)
+					obj = ptr;
+					len[0] = intersect[ptr->type](&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
+				}
+				else
+				{
+					len[1] = intersect[ptr->type](&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
+					if (len[1] != -1 && len[1] <= len[0])
 					{
-						sph = ptr;
-						len[0] = intersect_sphere(&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
-					}
-					else
-					{
-						len[1] = intersect_sphere(&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
-						if (len[1] != -1 == len[1] < len[0])
-						{
-							sph = ptr;
-							len[0] = len[1];
-						}
+						obj = ptr;
+						len[0] = len[1];
 					}
 				}
 				ptr = ptr->next;
 			}
 			if (len[0] > DRAW_DIST)
-				sdl_putpixel(e->sdl->surface, x, y, RGB(sph->color.x, sph->color.y, sph->color.z));
+				sdl_putpixel(e->sdl->surface, x, y, RGB(obj->color.x, obj->color.y, obj->color.z));
 			x++;
 		}
 		y++;

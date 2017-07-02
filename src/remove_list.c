@@ -1,37 +1,42 @@
 #include <rtv1.h>
 
-int			is_empty(LIST_TYPE ptr)
+int		is_empty(T_LIST ptr)
 {
 	if (ft_strlen(ptr->str) == 0)
 		return (1);
 	return (0);
 }
 
-LIST_TYPE	remove_list(LIST_TYPE ptr, int (f)(LIST_TYPE))
+T_LIST	del(T_LIST ptr)
 {
-	LIST_TYPE	before;
-	LIST_TYPE	current;
+	ft_strclr(ptr->str);
+	return (ptr->next);
+}
 
-	if (!(before = NULL) && (current = ptr))
-		while (current)
-			if (f(current) && before == NULL)
+T_LIST	remove_list(T_LIST ptr, int (condition)(T_LIST), T_LIST (del)(T_LIST))
+{
+	T_LIST	before;
+	T_LIST	current;
+
+	before = NULL;
+	current = ptr;
+	while (current)
+		if (condition(current) && before == NULL)
+		{
+				ptr = del(current);
+				free(current);
+				current = ptr;
+		}
+		else
+		{
+			if (condition(current))
 			{
-					free(current->str);
-					ptr = current->next;
+					before->next = del(current);
 					free(current);
-					current = ptr;
 			}
 			else
-			{
-				if (f(current))
-				{
-						free(current->str);
-						before->next = current->next;
-						free(current);
-				}
-				else
-					before = current;
-				current = before->next;
-			}
+				before = current;
+			current = before->next;
+		}
 	return (ptr);
 }

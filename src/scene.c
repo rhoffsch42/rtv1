@@ -76,7 +76,7 @@ void	get_scene(t_env *e, int ac, char **av)
 	lines = get_file(av[1]);
 	remove_comments(lines);
 	remove_white_spaces(lines);
-	lines = remove_list(lines, is_empty);
+	lines = remove_list(lines, is_empty, del);
 	build_objects(e, lines, 0);
 
 
