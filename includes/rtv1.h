@@ -35,6 +35,8 @@
 # define COLOR_MAX		255
 # define TITLE_MAX_LEN	50
 # define TITLE_TRUNC	"[...]"
+# define DRAW_DIST		5.0000f
+# define SCREEN_DIST	500.0f
 
 # define YA_SEPARATOR	':'
 # define YA_LIST		"- "
@@ -167,8 +169,8 @@ typedef struct			s_sphere
 
 typedef struct			s_sdl
 {
-	int					win_x;
-	int					win_y;
+	t_vector2			size;
+	t_vector2			mid;
 	char				*title;
 	SDL_Window			*win;
 	SDL_Surface			*surface;
