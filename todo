@@ -1,8 +1,29 @@
+refacto complet?:
+	tous les objets rassembles, pour avoir un tableau de fonctions intersection[OBJ_TYPE]
 refacto fonction build_pos/rot/etc, prendre une &structure en parametre
  -> pas de doublons de fonctions
 
-refacto remove_list, faire une fonction destructor de la list pour l utiliser en parametre de renove_list
+quand plusieurs objets intersectes en x y sont a la meme distance, dessiner tout le temps 1 seul d'entre eux (prendre le plus petit id par ex)
+
+refacto remove_list, faire une fonction destructor de la list pour l utiliser en parametre de remove_list
 	norme remove_list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 possible: construire le tableau de tokens (tok[]) via la charte et les operations binaires
 	char a = 1;

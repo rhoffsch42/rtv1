@@ -12,9 +12,17 @@ static int		build_size(t_env *e, t_str *ptr)
 	if (ft_strlen(ptr->str) < 3 || ptr->str[0] != '-' || ptr->str[1] != ' ')
 		error_yaml(ptr->str, YA_ERROR);
 	if (o == 0)
-		e->sdl->win_x = (int)ft_atof(secure_atof(ptr->str + 2));
+	{
+		e->sdl->size.x = (int)ft_atof(secure_atof(ptr->str + 2));
+		ft_putnbr(e->sdl->size.x);ENDL
+		e->sdl->mid.x = e->sdl->size.x / 2;
+	}
 	else if (o == 1)
-		e->sdl->win_y = (int)ft_atof(secure_atof(ptr->str + 2));
+	{
+		e->sdl->size.y = (int)ft_atof(secure_atof(ptr->str + 2));
+		ft_putnbr(e->sdl->size.y);ENDL
+		e->sdl->mid.y = e->sdl->size.y / 2;
+	}
 	else
 		error_yaml(ptr->str, YA_ERROR);
 	o++;
@@ -63,8 +71,10 @@ t_str	*build_win(t_env *e, t_str *ptr)
 	ft_strdel(&(tok[3]));
 	ft_tabdel(&tok);
 	ft_putendl("///////////////////////////");
-	ft_putnbr(e->sdl->win_x);ENDL
-	ft_putnbr(e->sdl->win_y);ENDL
+	ft_putnbr(e->sdl->size.x);ENDL
+	ft_putnbr(e->sdl->size.y);ENDL
+	ft_putnbr(e->sdl->mid.x);ENDL
+	ft_putnbr(e->sdl->mid.y);ENDL
 	ft_putendl(e->sdl->title);
 	ft_putendl("///////////////////////////");
 	return (ptr);

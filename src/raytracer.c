@@ -23,7 +23,7 @@ float		intersect_sphere(t_ray *ray, t_sphere *sphere)
  	c = scalar_vector3(&dist, &dist) - (sphere->r * sphere->r);
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
-		return (0);
+		return (-1);
 	else
 	{
 		sqrtdelta = sqrtf(delta);
@@ -31,7 +31,7 @@ float		intersect_sphere(t_ray *ray, t_sphere *sphere)
 		res2 = (-b - sqrtdelta) / 2;
 		if (res1 > res2)
 			res1 = res2;
-		printf("%f\n", res1);
+		// printf("%f\n", res1);
 		return (res1);
 	}
 }
@@ -39,17 +39,41 @@ float		intersect_sphere(t_ray *ray, t_sphere *sphere)
 void	raytracer(t_env *e)
 {
 	ft_putendl("- - - - - raytracer");
-	int		x;
-	int		y;
+	t_sphere	*ptr;
+	int			x;
+	int			y;
+	int			len[2];
+	t_sphere	*sph;
 
 	y = 0;
-	while (y < e->sdl->win_y)
+	while (y < e->sdl->size.y)
 	{
 		x = 0;
-		while (x < e->sdl->win_x)
+		while (x < e->sdl->size.x)
 		{
-			if (intersect_sphere(&((t_ray){{x, y, 0}, {0, 0, 1}}), e->spheres) > 0.0001f)
-				sdl_putpixel(e->sdl->surface, x, y, RGB(125, 15, 150));
+			ptr = e->spheres;
+			sph = NULL;
+			len[0] = -1;
+			while (ptr)
+			{
+				if (sph == NULL || len[0] == -1)
+				{
+					sph = ptr;
+					len[0] = intersect_sphere(&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
+				}
+				else
+				{
+					len[1] = intersect_sphere(&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
+					if (len[1] != -1 == len[1] < len[0])
+					{
+						sph = ptr;
+						len[0] = len[1];
+					}
+				}
+				ptr = ptr->next;
+			}
+			if (len[0] > DRAW_DIST)
+				sdl_putpixel(e->sdl->surface, x, y, RGB(sph->color.x, sph->color.y, sph->color.z));
 			x++;
 		}
 		y++;

@@ -30,7 +30,7 @@ void	print_objects(t_env *e)
 	ENDL
 	ENDL
 	printf("amblight\t%f\n", e->amblight);
-	printf("window  \t%d\t%d\t\"%s\"\n", e->sdl->win_x, e->sdl->win_y, e->sdl->title);
+	printf("window  \t%d\t%d\t%d\t%d\t\"%s\"\n", (int)e->sdl->size.x, (int)e->sdl->size.y, (int)e->sdl->mid.x, (int)e->sdl->mid.y, e->sdl->title);
 	t_sphere	*sph = e->spheres;
 	while (sph)
 	{
@@ -52,7 +52,7 @@ void	print_objects(t_env *e)
 		cyl = cyl->next;
 	}
 	t_cone	*cone = e->cones;
-	while (e->cones)
+	while (cone)
 	{
 		printf("cone    \t");
 		print_vector3(cone->pos);
@@ -62,7 +62,7 @@ void	print_objects(t_env *e)
 		cone = cone->next;
 	}
 	t_plan	*plan = e->plans;
-	while (e->plans)
+	while (plan)
 	{
 		printf("plan    \t");
 		print_vector3(plan->pos);
@@ -93,7 +93,7 @@ int		main(int ac, char **av)
 	e = init_env();
 	get_scene(e, ac, av);
 	adjust_objects(e);
-	// print_objects(e);
+	print_objects(e);
 	init_sdl(e->sdl);
 	raytracer(e);
 

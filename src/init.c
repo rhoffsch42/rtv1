@@ -50,8 +50,10 @@ t_env	*init_env(void)
 	if ((e->sdl = (t_sdl*)malloc(sizeof(t_sdl))) == NULL)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
 	ft_bzero((void*)e->sdl, sizeof(t_sdl));
-	e->sdl->win_x = DEF_WIN_X;
-	e->sdl->win_y = DEF_WIN_Y;
+	e->sdl->size.x = DEF_WIN_X;
+	e->sdl->size.y = DEF_WIN_Y;
+	e->sdl->mid.x = e->sdl->size.x / 2;
+	e->sdl->mid.y = e->sdl->size.y / 2;
 	e->sdl->title = ft_strdup(DEF_WIN_TITLE);
 	e->sdl->surface = NULL;
 	e->sdl->win = NULL;
@@ -72,7 +74,7 @@ void	init_sdl(t_sdl *sdl)
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 		ft_errexit(SDL_GetError(), RED, SDL_FAIL);
 	sdl->win = SDL_CreateWindow(sdl->title, SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED, sdl->win_x, sdl->win_y, SDL_WINDOW_RESIZABLE);
+		SDL_WINDOWPOS_CENTERED, sdl->size.x, sdl->size.y, SDL_WINDOW_RESIZABLE);
 	SDL_ShowWindow(sdl->win);
 	SDL_RaiseWindow(sdl->win);
 	sdl->surface = SDL_GetWindowSurface(sdl->win);
