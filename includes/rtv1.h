@@ -214,6 +214,7 @@ char					*ft_strtrim_extended(const char *s);
 float					ft_atof(char *s);
 void					ft_tabdel(char ***tab);
 void					rot_vector2(t_vector2 *src, t_vector2 *dst, float rad, float rot_direction);
+void					rot_vector3(t_vector3 *src, t_vector3 *dst, t_vector3 rad, float rot_direction);
 float					ft_fmodulo(float n, float mod);
 float					ft_degree_scale(float degree);
 int						color_coef(int val, float coef);

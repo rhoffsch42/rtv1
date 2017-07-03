@@ -1,3 +1,8 @@
+lights:
+	base: 25 objectif: 255
+	1 lumieres: color +230 au contact de chaque lumiere
+	2 lumieres: color +115
+	3 lumieres: color +76
 inclure les rotation
 quand plusieurs objets intersectes en x y sont a la meme distance, dessiner tout le temps 1 seul d'entre eux (prendre le plus petit id par ex)
 

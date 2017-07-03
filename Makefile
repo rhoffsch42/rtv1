@@ -6,7 +6,7 @@
 #    By: rhoffsch <rhoffsch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/15 17:38:19 by rhoffsch          #+#    #+#              #
-#    Updated: 2017/05/24 14:20:38 by rhoffsch         ###   ########.fr        #
+#    Updated: 2017/07/03 16:41:53 by rhoffsch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,9 +48,8 @@ SRC				=	$(patsubst %.c, $(SDIR)%.c, $(CFILE))
 ODIR			=	obj/
 OBJ				=	$(patsubst %.c, $(ODIR)%.o, $(CFILE))
 
-.PHONY: all compile lib aff norm clean fclean re
+.PHONY: all compile lib norm clean fclean nosdl re
 
-# all: sdl compile
 all: compile
 
 compile: lib sdl
@@ -83,5 +82,10 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@echo "\033[33;32m$(NAME) \033[33;31mdeleted\033[33;37m"
+
+nosdl:
+	make fclean -C ./
+	make fclean -C ./libft/
+	make fclean -f Makefile.sdl
 
 re: fclean all
