@@ -22,7 +22,11 @@
 # define SPACE			ft_putchar(32);
 # define T_LIST			t_str*
 
-# define RGB(r, g, b)(65536 * (int)(r) + 256 * (int)(g) + (int)(b))
+# define RGB(r, g, b)	(65536 * (int)(r) + 256 * (int)(g) + (int)(b))
+# define RTOD(x)		(x * (180.0f / M_PI))
+# define DTOR(x)		(x * M_PI / 180.0f)
+# define ROT_RIGHT		-1
+# define ROT_LEFT		1
 
 # define DEF_WIN_TITLE	"Default title"
 # define DEF_WIN_X		800
@@ -37,6 +41,7 @@
 # define TITLE_TRUNC	"[...]"
 # define DRAW_DIST		5.0000f
 # define SCREEN_DIST	500.0f
+# define FOV			90.0f
 
 # define YA_SEPARATOR	':'
 # define YA_LIST		"- "
@@ -208,5 +213,9 @@ float					scalar_vector3(t_vector3 *v1, t_vector3 *v2);
 char					*ft_strtrim_extended(const char *s);
 float					ft_atof(char *s);
 void					ft_tabdel(char ***tab);
+void					rot_vector2(t_vector2 *src, t_vector2 *dst, float rad, float rot_direction);
+float					ft_fmodulo(float n, float mod);
+float					ft_degree_scale(float degree);
+int						color_coef(int val, float coef);
 
 #endif
