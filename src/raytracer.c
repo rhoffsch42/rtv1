@@ -61,8 +61,8 @@ void	raytracer(t_env *e)
 {
 	ft_putendl("- - - - - raytracer");
 	t_obj		*ptr;
-	int			x;
-	int			y;
+	float		x;
+	float		y;
 	int			len[2];
 	t_obj		*obj;
 	float		(*intersect[4])(t_ray*, t_obj*) = {intersect_sphere, intersect_cylinder, intersect_cone, intersect_plan};
@@ -81,11 +81,11 @@ void	raytracer(t_env *e)
 				if (obj == NULL || len[0] == -1)
 				{
 					obj = ptr;
-					len[0] = intersect[ptr->type](&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
+					len[0] = intersect[ptr->type](&((t_ray){e->cam.pos, {(x - e->sdl->mid.x) - e->cam.pos.x, (y - e->sdl->mid.y) - e->cam.pos.y, SCREEN_DIST}}), ptr);
 				}
 				else
 				{
-					len[1] = intersect[ptr->type](&((t_ray){e->cam.pos, {x - e->sdl->mid.x - e->cam.pos.x, y - e->sdl->mid.y - e->cam.pos.y, SCREEN_DIST}}), ptr);
+					len[1] = intersect[ptr->type](&((t_ray){e->cam.pos, {(x - e->sdl->mid.x) - e->cam.pos.x, (y - e->sdl->mid.y) - e->cam.pos.y, SCREEN_DIST}}), ptr);
 					if (len[1] != -1 && len[1] <= len[0])
 					{
 						obj = ptr;
