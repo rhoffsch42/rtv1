@@ -55,6 +55,13 @@ void	print_objects(t_env *e)
 
 int		main(int ac, char **av)
 {
+	// t_vector3	vec = { 100, 100, 100 };
+	// t_vector3	rot = { DTOR(90), DTOR(0), DTOR(0) };
+	//
+	// printf("%f\t%f\t%f\n", vec.x, vec.y, vec.z);
+	// rot_vector3(&vec, &vec, &rot, ROT_RIGHT);
+	// printf("%f\t%f\t%f\n", vec.x, vec.y, vec.z);
+	// exit(0);
 	// sdl_test();exit(0);
 	// printf("%f\n", atof("  \t -.2.4 6"));exit(0);
 	// ft_putnbrendl(ft_atoi(NULL));exit(0);
