@@ -84,20 +84,25 @@ void	raytracer(t_env *e)
 	while (y < e->sdl->size.y)
 	{
 		x = 0;
-		y_pitched = (y - e->sdl->mid.y) * pitch;
-		// y_pitched *= cosf(DTOR(y_pitched));
+		x_pitched = (y - e->sdl->mid.y) * pitch;
+		// x_pitched *= cosf(DTOR(x_pitched));
 		while (x < e->sdl->size.x)
 		{
 			ptr = e->objs;
 			obj = NULL;
 			len[0] = -1;
-			// ray.dir.y = y - e->sdl->mid.y - e->cam.pos.y;
-			// ray.dir.x = x - e->sdl->mid.x - e->cam.pos.x;
-			// ray.dir.z = SCREEN_DIST;
-			// rot_vector3(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(0), DTOR(0), DTOR(0)}, ROT_RIGHT);
-			x_pitched = (x - e->sdl->mid.x) * pitch;
-			// x_pitched *= cosf(DTOR(x_pitched));
-			rot_vector3(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(x_pitched), DTOR(y_pitched), DTOR(0)}, ROT_RIGHT);
+			if (0)
+			{
+				ray.dir.y = y - e->sdl->mid.y - e->cam.pos.y;
+				ray.dir.x = x - e->sdl->mid.x - e->cam.pos.x;
+				ray.dir.z = SCREEN_DIST;
+				rot_vector3(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(0), DTOR(0), DTOR(0)}, ROT_WAY);
+			} else {
+				y_pitched = (x - e->sdl->mid.x) * pitch;
+				// y_pitched *= cosf((y_pitched));
+				// printf("%f\t%f\n", y_pitched, x_pitched);
+				rot_vector33(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(x_pitched), DTOR(y_pitched), DTOR(0)}, ROT_WAY);
+			}
 			while (ptr)
 			{
 				if (obj == NULL || len[0] == -1)
