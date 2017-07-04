@@ -30,11 +30,11 @@
 
 # define DEF_WIN_TITLE	"Default title"
 # define DEF_WIN_X		800
-# define DEF_WIN_Y		600
+# define DEF_WIN_Y		800
 # define MAX_WIN_X		1920
 # define MAX_WIN_Y		1080
 # define MIN_WIN_X		800
-# define MIN_WIN_Y		600
+# define MIN_WIN_Y		800
 # define FLOAT_MAX_LEN	7
 # define COLOR_MAX		255
 # define TITLE_MAX_LEN	50
@@ -218,5 +218,6 @@ void					rot_vector3(t_vector3 *src, t_vector3 *dst, t_vector3 rad, float rot_di
 float					ft_fmodulo(float n, float mod);
 float					ft_degree_scale(float degree);
 int						color_coef(int val, float coef);
+float					power(float value, int power);
 
 #endif

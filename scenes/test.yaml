@@ -1,0 +1,362 @@
+# ####################################################### TESTING
+window:
+    size:
+        - 1600
+        - 1200
+#        - 1080
+    title: This title is too long, the program will trunc it soon.
+#righty colone sphere
+sphere:
+    pos:
+        - -140
+        - 190
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - -70
+        - 190
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 0
+        - 190
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 70
+        - 190
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 140
+        - 190
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+# righty colone sphere
+sphere:
+    pos:
+        - -140
+        - 95
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - -70
+        - 95
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 0
+        - 95
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 70
+        - 95
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 140
+        - 95
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+#mid colone sphere
+sphere:
+    pos:
+        - -140
+        - 0
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - -70
+        - 0
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 0
+        - 0
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 70
+        - 0
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 140
+        - 0
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+# lefty colone sphere
+sphere:
+    pos:
+        - -140
+        - -95
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - -70
+        - -95
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 0
+        - -95
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 70
+        - -95
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 140
+        - -95
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+# left colone sphere
+sphere:
+    pos:
+        - -140
+        - -190
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - -70
+        - -190
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 0
+        - -190
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 70
+        - -190
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
+sphere:
+    pos:
+        - 140
+        - -190
+        - 250
+    rot:
+        - 451
+        - 561
+        - 671
+    color:
+        - 250
+        - 10
+        - 50
+    ray: 20
