@@ -25,6 +25,7 @@
 # define RGB(r, g, b)	(65536 * (int)(r) + 256 * (int)(g) + (int)(b))
 # define RTOD(x)		(x * (180.0f / M_PI))
 # define DTOR(x)		(x * M_PI / 180.0f)
+# define ROT_WAY		-1
 # define ROT_RIGHT		-1
 # define ROT_LEFT		1
 
@@ -215,6 +216,7 @@ float					ft_atof(char *s);
 void					ft_tabdel(char ***tab);
 void					rot_vector2(t_vector2 *src, t_vector2 *dst, float rad, float rot_direction);
 void					rot_vector3(t_vector3 *src, t_vector3 *dst, t_vector3 rad, float rot_direction);
+void					rot_vector33(t_vector3 *src, t_vector3 *dst, t_vector3 rad, float rot_direction);
 float					ft_fmodulo(float n, float mod);
 float					ft_degree_scale(float degree);
 int						color_coef(int val, float coef);

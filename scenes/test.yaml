@@ -1,10 +1,14 @@
 # ####################################################### TESTING
 window:
     size:
-        - 1600
-        - 1200
+        - 1000
+        - 1000
 #        - 1080
     title: This title is too long, the program will trunc it soon.
+
+#les boules du bas sont bleues (y = -190)
+#les boules de gauche sont vertes (x = -140)
+
 #righty colone sphere
 sphere:
     pos:
@@ -16,8 +20,8 @@ sphere:
         - 561
         - 671
     color:
-        - 250
         - 10
+        - 250
         - 50
     ray: 20
 sphere:
@@ -87,8 +91,8 @@ sphere:
         - 561
         - 671
     color:
-        - 250
         - 10
+        - 250
         - 50
     ray: 20
 sphere:
@@ -158,8 +162,8 @@ sphere:
         - 561
         - 671
     color:
-        - 250
         - 10
+        - 250
         - 50
     ray: 20
 sphere:
@@ -229,8 +233,8 @@ sphere:
         - 561
         - 671
     color:
-        - 250
         - 10
+        - 250
         - 50
     ray: 20
 sphere:
@@ -300,9 +304,9 @@ sphere:
         - 561
         - 671
     color:
-        - 250
         - 10
-        - 50
+        - 250
+        - 250
     ray: 20
 sphere:
     pos:
@@ -314,9 +318,9 @@ sphere:
         - 561
         - 671
     color:
-        - 250
         - 10
-        - 50
+        - 25
+        - 250
     ray: 20
 sphere:
     pos:
@@ -328,9 +332,9 @@ sphere:
         - 561
         - 671
     color:
-        - 250
         - 10
-        - 50
+        - 25
+        - 250
     ray: 20
 sphere:
     pos:
@@ -342,9 +346,9 @@ sphere:
         - 561
         - 671
     color:
-        - 250
         - 10
-        - 50
+        - 25
+        - 250
     ray: 20
 sphere:
     pos:
@@ -356,7 +360,7 @@ sphere:
         - 561
         - 671
     color:
-        - 250
         - 10
-        - 50
+        - 25
+        - 250
     ray: 20

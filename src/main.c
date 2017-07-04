@@ -59,7 +59,7 @@ int		main(int ac, char **av)
 	// t_vector3	rot = { DTOR(90), DTOR(0), DTOR(0) };
 	//
 	// printf("%f\t%f\t%f\n", vec.x, vec.y, vec.z);
-	// rot_vector3(&vec, &vec, &rot, ROT_RIGHT);
+	// rot_vector3(&vec, &vec, &rot, ROT_WAY);
 	// printf("%f\t%f\t%f\n", vec.x, vec.y, vec.z);
 	// exit(0);
 	// sdl_test();exit(0);
