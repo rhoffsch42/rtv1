@@ -66,33 +66,48 @@ void	raytracer(t_env *e)
 	int			len[2];
 	t_obj		*obj;
 	float		(*intersect[4])(t_ray*, t_obj*) = {intersect_sphere, intersect_cylinder, intersect_cone, intersect_plan};
-	t_vector3	rot = { DTOR(0), DTOR(30), DTOR(30) };
-	t_ray		*ray = malloc(sizeof(t_ray));
+	t_ray		ray;
+	t_ray		ray2;
+	float		pitch = FOV / e->sdl->size.x;
+	float		x_pitched;
+	float		y_pitched;
 
-	ray->origin = e->cam.pos;
+	ray.origin = e->cam.pos;
+	ray.dir.y = 0;
+	ray.dir.x = 0;
+	ray.dir.z = SCREEN_DIST;
+	ray2.origin = e->cam.pos;
+	ray2.dir.y = 0;
+	ray2.dir.x = 0;
+	ray2.dir.z = SCREEN_DIST;
 	y = 0;
 	while (y < e->sdl->size.y)
 	{
 		x = 0;
+		y_pitched = (y - e->sdl->mid.y) * pitch;
+		// y_pitched *= cosf(DTOR(y_pitched));
 		while (x < e->sdl->size.x)
 		{
 			ptr = e->objs;
 			obj = NULL;
 			len[0] = -1;
-			ray->dir.y = y - e->sdl->mid.y - e->cam.pos.y;
-			ray->dir.x = x - e->sdl->mid.x - e->cam.pos.x;
-			ray->dir.z = SCREEN_DIST;
-			rot_vector3(&(ray->dir), &(ray->dir), rot, ROT_RIGHT);
+			// ray.dir.y = y - e->sdl->mid.y - e->cam.pos.y;
+			// ray.dir.x = x - e->sdl->mid.x - e->cam.pos.x;
+			// ray.dir.z = SCREEN_DIST;
+			// rot_vector3(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(0), DTOR(0), DTOR(0)}, ROT_RIGHT);
+			x_pitched = (x - e->sdl->mid.x) * pitch;
+			// x_pitched *= cosf(DTOR(x_pitched));
+			rot_vector3(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(x_pitched), DTOR(y_pitched), DTOR(0)}, ROT_RIGHT);
 			while (ptr)
 			{
 				if (obj == NULL || len[0] == -1)
 				{
 					obj = ptr;
-					len[0] = intersect[ptr->type](ray, ptr);
+					len[0] = intersect[ptr->type](&ray2, ptr);
 				}
 				else
 				{
-					len[1] = intersect[ptr->type](ray, ptr);
+					len[1] = intersect[ptr->type](&ray2, ptr);
 					if (len[1] != -1 && len[1] <= len[0])
 					{
 						obj = ptr;
