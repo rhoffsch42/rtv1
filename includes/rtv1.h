@@ -162,6 +162,7 @@ typedef struct			s_obj
 	t_vector3			rot;
 	t_vector3			color;
 	float				param;
+	float				distance;
 	struct s_obj		*next;
 }						t_obj;
 

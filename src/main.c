@@ -73,6 +73,9 @@ int		main(int ac, char **av)
 	adjust_objects(e);
 	print_objects(e);
 	init_sdl(e->sdl);
+	SDL_Surface		*image_surface = SDL_LoadBMP("bg.bmp");
+	ft_putendl((image_surface) ? "BG loaded" : "BG FUCK");
+	SDL_BlitSurface(image_surface, NULL, e->sdl->surface, &((SDL_Rect){0, 0, e->sdl->size.x, e->sdl->size.y}));
 	raytracer(e);
 
 	SDL_Event	event;
