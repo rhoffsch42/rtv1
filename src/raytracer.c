@@ -41,18 +41,18 @@ void		intersect_plan(t_ray *ray, t_obj *obj)
 	o = u.x * v.y - u.y * v.x;
 
 	float	d; //equation cartesienne
-	d = -(m * obj.x + n * obj.y + o * obj.z);
+	d = -(m * obj->pos.x + n * obj->pos.y + o * obj->pos.z);
 
 	float T = 0;// T = inconnu
 	t_vector3	pr; // equations parametriques de la droite/ray (points de la droite/ray)
 
-	T = -(d + m * ray.origin.x + n * ray.origin.y + o * ray.origin.z) \
-		/ (m * ray.dir.x + n * ray.dir.y + o * ray.dir.z);
-	pr.x = ray.origin.x + ray.dir.x * T;
-	pr.y = ray.origin.y + ray.dir.y * T;
-	pr.z = ray.origin.z + ray.dir.z * T;
-	obj->dist = sqrt(power(pr.x - ray.origin.x) \
-				+ power(pr.y - ray.origin.y) + power(pr.z - ray.origin.z));
+	T = -(d + m * ray->origin.x + n * ray->origin.y + o * ray->origin.z) \
+		/ (m * ray->dir.x + n * ray->dir.y + o * ray->dir.z);
+	pr.x = ray->origin.x + ray->dir.x * T;
+	pr.y = ray->origin.y + ray->dir.y * T;
+	pr.z = ray->origin.z + ray->dir.z * T;
+	obj->dist = sqrt(power(pr.x - ray->origin.x, 2) \
+			power(pr.y - ray->origin.y, 2) + power(pr.z - ray->origin.z, 2));
 }
 
 void		intersect_sphere(t_ray *ray, t_obj *obj)
