@@ -51,8 +51,8 @@ void		intersect_plan(t_ray *ray, t_obj *obj)
 	pr.x = ray->origin.x + ray->dir.x * T;
 	pr.y = ray->origin.y + ray->dir.y * T;
 	pr.z = ray->origin.z + ray->dir.z * T;
-	obj->dist = sqrt(power(pr.x - ray->origin.x, 2) \
-			power(pr.y - ray->origin.y, 2) + power(pr.z - ray->origin.z, 2));
+	obj->distance = sqrt(power(pr.x - ray->origin.x, 2) \
+			+ power(pr.y - ray->origin.y, 2) + power(pr.z - ray->origin.z, 2));
 }
 
 void		intersect_sphere(t_ray *ray, t_obj *obj)
