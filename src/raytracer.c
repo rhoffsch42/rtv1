@@ -32,63 +32,27 @@ t_vector3	dtor_vector3(t_vector3 src)
 
 void		intersect_plan(t_ray *ray, t_obj *obj)
 {
-	// ax + by + cz + d = 0;
-	// t_vector3	cp;
-	// t_vector3	p1;
-	// t_vector3	p2;
-	//
-	// cp.x = obj.x - ray->origin.x;
-	// cp.x = obj.y - ray->origin.y;
-	// cp.x = obj.z - ray->origin.z;
-	// p1.x = ;
-	// p1.y = ;
-	// p1.z = ;
-	// p2.x = ;
-	// p2.x = ;
-	// p2.x = ;
-	//
-	//
-	// CP + a*P1 + b*P2 - cR = 0
-	// aP1 + bP2 - cR + CP = 0;
+	t_vector3	u = {0, 0, 10};
+	t_vector3	v = {10, 0, 0};
 
+	float	m, n, o;// produit vectoriel u/\v
+	m = u.y * v.z - u.z * v.y;
+	n = u.z * v.x - u.x * v.z;
+	o = u.x * v.y - u.y * v.x;
 
-/*	//////////////////////////////// definition du plan P(o, u->, v->)
-	t_vector3	p = obj->pos;
-	t_vector3	u = {100, 0, 0};
-	t_vector3	v = {0, 0, 100};
-	obj->rot.x = 0.0f;
-	obj->rot.y = 90.0f;
-	obj->rot.z = 0.0f;
+	float	d; //equation cartesienne
+	d = -(m * obj.x + n * obj.y + o * obj.z);
 
-	// print_vector3f(x);ENDL
-	// print_vector3f(z);ENDL
-	rot_vector3(&u, &u, dtor_vector3(obj->rot), ROT_WAY);
-	rot_vector3(&v, &v, dtor_vector3(obj->rot), ROT_WAY);
-	// print_vector3f(x);ENDL
-	// print_vector3f(z);ENDL
-
-
-	t_vector3	pp; // equations parametriques du plan (points du plan)
-	pp.x = plan.x + A * u.x + B * v.x;
-	pp.y = plan.y + A * u.y + B * v.y;
-	pp.z = plan.z + A * u.z + B * v.z;
-
-	float	a, b, c, d, equation_plan; //equation cartesienne
-	a = u.y * v.z - u.z * v.y;
-	b = u.z * v.x - u.x * v.z;
-	c = u.x * v.y - u.y * v.x;
-	d = -(a * p.x + b * p.y + c * p.z);
-	equation_plan = a * pp.x + b * pp.y + c * pp.z + d;
-
+	float T = 0;// T = inconnu
 	t_vector3	pr; // equations parametriques de la droite/ray (points de la droite/ray)
-	pr.x = ray.origin.x ray.dir.x * T;
-	pr.y = ray.origin.y ray.dir.y * T;
-	pr.z = ray.origin.z ray.dir.z * T;
 
-	exit(0);
-*/	/////////////////////////////////
-	(void)ray;
-	(void)obj;
+	T = -(d + m * ray.origin.x + n * ray.origin.y + o * ray.origin.z) \
+		/ (m * ray.dir.x + n * ray.dir.y + o * ray.dir.z);
+	pr.x = ray.origin.x + ray.dir.x * T;
+	pr.y = ray.origin.y + ray.dir.y * T;
+	pr.z = ray.origin.z + ray.dir.z * T;
+	obj->dist = sqrt(power(pr.x - ray.origin.x) \
+				+ power(pr.y - ray.origin.y) + power(pr.z - ray.origin.z));
 }
 
 void		intersect_sphere(t_ray *ray, t_obj *obj)
