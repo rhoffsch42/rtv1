@@ -51,7 +51,10 @@ void		intersect_plan(t_ray *ray, t_obj *obj)
 	pr.x = ray->origin.x + ray->dir.x * T;
 	pr.y = ray->origin.y + ray->dir.y * T;
 	pr.z = ray->origin.z + ray->dir.z * T;
-	obj->distance = sqrt(power(pr.x - ray->origin.x, 2) \
+	if (T < 0.0f || T > 10000.0f)
+		obj->distance = 0;
+	else
+		obj->distance = sqrt(power(pr.x - ray->origin.x, 2) \
 			+ power(pr.y - ray->origin.y, 2) + power(pr.z - ray->origin.z, 2));
 }
 
@@ -97,7 +100,17 @@ t_obj	*get_closest_object(t_obj *ptr, float draw_dist)
 				closest = ptr;
 		ptr = ptr->next;
 	}
+	// printf("clo:\t%f\n", closest->distance);
 	return (closest);
+}
+
+void	reset_distances(t_obj *ptr)
+{
+	while (ptr)
+	{
+		ptr->distance = 0;
+		ptr = ptr->next;
+	}
 }
 
 void	raytracer(t_env *e)
@@ -147,13 +160,38 @@ void	raytracer(t_env *e)
 				// printf("\t(%f\t%f)\n", x_pitched * cosf(DTOR(x_pitched)), y_pitched * cosf(DTOR(y_pitched)));
 				rot_vector33(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(x_pitched), DTOR(y_pitched), DTOR(0)}, ROT_WAY);
 			}
+			reset_distances(ptr);
 			while (ptr)
 			{
 				intersect[ptr->type](&ray2, ptr);
 				ptr = ptr->next;
 			}
 			if ((obj = get_closest_object(e->objs, DRAW_DIST)))
-				sdl_putpixel(e->sdl->surface, x, y, RGB(obj->color.x, obj->color.y, obj->color.z));
+			{
+				t_vector3	col = {obj->color.x, obj->color.y, obj->color.z};
+				if (obj->type == PLAN || obj->type == SPHERE)
+				{
+					if (obj->distance > 500.0f)
+					{
+						col.x = 0;
+						col.y = 0;
+						col.z = 0;
+					}
+					else {
+						float coef = obj->distance / 500.0f;
+						col.x = (int)(obj->color.x * (1.0f - coef));
+						col.y = (int)(obj->color.y * (1.0f - coef));
+						col.z = (int)(obj->color.z * (1.0f - coef));
+					}
+					if (x == 400 && obj->type == SPHERE)
+					{
+						printf("%f\t%f\t%f\t%f\n", \
+						obj->distance, col.x, col.y, col.z);
+					}
+				}
+				sdl_putpixel(e->sdl->surface, x, y, \
+					RGB(col.x, col.y, col.z));
+			}
 			x++;
 		}
 		y++;
