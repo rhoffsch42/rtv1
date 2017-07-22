@@ -41,7 +41,7 @@
 # define TITLE_MAX_LEN	50
 # define TITLE_TRUNC	"[...]"
 # define DRAW_DIST		5.0000f
-# define SCREEN_DIST	500.0f
+# define SCREEN_DIST	1.0f
 # define FOV			90.0f
 
 # define YA_SEPARATOR	':'
@@ -128,6 +128,13 @@ typedef struct			s_vector3
 	float				z;
 }						t_vector3;
 
+typedef struct	s_ray
+{
+	t_vector3	origin;
+	t_vector3	dir;
+}				t_ray;
+
+
 typedef struct			s_cam
 {
 	int					id;
@@ -178,6 +185,10 @@ typedef struct			s_env
 
 ////debug, a delete apres
 int						sdl_test(void);
+void					debug_ray(t_obj *obj, t_ray ray, t_vector3 color);
+void					print_vector3f(t_vector3 vector, char *comment);
+void					print_vector3(t_vector3	vector, char *comment);
+void					print_vector2(t_vector2	vector, char *comment);
 
 t_env					*init_env(void);
 void					init_sdl(t_sdl *sdl);
@@ -221,6 +232,5 @@ void					rot_vector33(t_vector3 *src, t_vector3 *dst, t_vector3 rad, float rot_d
 float					ft_fmodulo(float n, float mod);
 float					ft_degree_scale(float degree);
 int						color_coef(int val, float coef);
-float					power(float value, int power);
 
 #endif

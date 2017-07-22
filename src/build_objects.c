@@ -3,7 +3,6 @@
 t_str			*build_sphere(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_sphere");
-	(void)id;
 	t_obj	*old;
 	char	**tok;
 	int		(*func[4])(t_env*, t_str*) = { build_pos, build_rot, build_color, build_param };
@@ -21,6 +20,7 @@ t_str			*build_sphere(t_env *e, t_str *ptr, int id)
 	if ((e->objs = (t_obj*)malloc(sizeof(t_obj))) == NULL)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
 	e->objs->type = SPHERE;
+	e->objs->id = id;
 	ptr = building_algo(e, ptr, tok, func);
 	e->objs->next = old;
 	ft_strdel(&(tok[5]));
@@ -43,7 +43,6 @@ t_str			*build_sphere(t_env *e, t_str *ptr, int id)
 t_str			*build_cylinder(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_cylinder");
-	(void)id;
 	t_obj	*old;
 	char	**tok;
 	int		(*func[4])(t_env*, t_str*) = { build_pos, build_rot, \
@@ -62,6 +61,7 @@ t_str			*build_cylinder(t_env *e, t_str *ptr, int id)
 	if ((e->objs = (t_obj*)malloc(sizeof(t_obj))) == NULL)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
 	e->objs->type = CYLINDER;
+	e->objs->id = id;
 	ptr = building_algo(e, ptr, tok, func);
 	e->objs->next = old;
 	ft_strdel(&(tok[5]));
@@ -84,7 +84,6 @@ t_str			*build_cylinder(t_env *e, t_str *ptr, int id)
 t_str			*build_cone(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_cone");
-	(void)id;
 	t_obj	*old;
 	char	**tok;
 	int		(*func[4])(t_env*, t_str*) = { build_pos, build_rot, \
@@ -103,6 +102,7 @@ t_str			*build_cone(t_env *e, t_str *ptr, int id)
 	if ((e->objs = (t_obj*)malloc(sizeof(t_obj))) == NULL)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
 	e->objs->type = CONE;
+	e->objs->id = id;
 	ptr = building_algo(e, ptr, tok, func);
 	e->objs->next = old;
 	ft_strdel(&(tok[5]));
@@ -125,7 +125,6 @@ t_str			*build_cone(t_env *e, t_str *ptr, int id)
 t_str			*build_plan(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_plan");
-	(void)id;
 	t_obj	*old;
 	char	**tok;
 	int		(*func[3])(t_env*, t_str*) = { build_pos, build_rot, build_color };
@@ -142,6 +141,7 @@ t_str			*build_plan(t_env *e, t_str *ptr, int id)
 	if ((e->objs = (t_obj*)malloc(sizeof(t_obj))) == NULL)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
 	e->objs->type = PLAN;
+	e->objs->id = id;
 	ptr = building_algo(e, ptr, tok, func);
 	e->objs->next = old;
 	ft_strdel(&(tok[4]));

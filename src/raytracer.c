@@ -1,11 +1,5 @@
 #include <rtv1.h>
 
-typedef struct	s_ray
-{
-	t_vector3	origin;
-	t_vector3	dir;
-}				t_ray;
-
 void		intersect_cylinder(t_ray *ray, t_obj *obj)
 {
 	(void)ray;
@@ -18,49 +12,55 @@ void		intersect_cone(t_ray *ray, t_obj *obj)
 	(void)obj;
 }
 
-void	print_vector3f(t_vector3 vector)
-{
-	printf("x %f\n", vector.x);
-	printf("y %f\n", vector.y);
-	printf("z %f\n", vector.z);
-}
-
 t_vector3	dtor_vector3(t_vector3 src)
 {
 	return ((t_vector3){DTOR(src.x), DTOR(src.y), DTOR(src.z)});
 }
 
+typedef struct	s_inter_plan
+{
+	float		a;
+	float		b;
+	float		c;
+	float		d;
+	float		t;
+	t_vector3	pr;
+
+}				t_inter_plan;
+
 void		intersect_plan(t_ray *ray, t_obj *obj)
 {
-	t_vector3	u = {0, 0, 10};
-	t_vector3	v = {10, 0, 0};
+	t_inter_plan	s;
+	t_vector3		u = {0, 0, 10};// si ca passe pas a la norme,
+	t_vector3		v = {10, 0, 0};// les mettre en static dans t_inter_plan
 
-	float	m, n, o;// produit vectoriel u/\v
-	m = u.y * v.z - u.z * v.y;
-	n = u.z * v.x - u.x * v.z;
-	o = u.x * v.y - u.y * v.x;
-
-	float	d; //equation cartesienne
-	d = -(m * obj->pos.x + n * obj->pos.y + o * obj->pos.z);
-
-	float T = 0;// T = inconnu
-	t_vector3	pr; // equations parametriques de la droite/ray (points de la droite/ray)
-
-	T = -(d + m * ray->origin.x + n * ray->origin.y + o * ray->origin.z) \
-		/ (m * ray->dir.x + n * ray->dir.y + o * ray->dir.z);
-	pr.x = ray->origin.x + ray->dir.x * T;
-	pr.y = ray->origin.y + ray->dir.y * T;
-	pr.z = ray->origin.z + ray->dir.z * T;
-	if (T < 0.0f || T > 10000.0f)
+	rot_vector33(&u, &u, dtor_vector3(obj->rot), ROT_WAY);
+	rot_vector33(&v, &v, dtor_vector3(obj->rot), ROT_WAY);
+	// float	a, b, c;// produit vectoriel u/\v
+	s.a = u.y * v.z - u.z * v.y;
+	s.b = u.z * v.x - u.x * v.z;
+	s.c = u.x * v.y - u.y * v.x;
+	// float	d; //equation cartesienne
+	s.d = -(s.a * obj->pos.x + s.b * obj->pos.y + s.c * obj->pos.z);
+	// float t = 0;// t = inconnu
+	// t_vector3	pr; // equations parametriques de la droite/ray (points de la droite/ray)
+	s.t = -(s.d + s.a * ray->origin.x + s.b * ray->origin.y + s.c \
+	* ray->origin.z) / (s.a * ray->dir.x + s.b * ray->dir.y + s.c * ray->dir.z);
+	s.pr.x = ray->origin.x + ray->dir.x * s.t;
+	s.pr.y = ray->origin.y + ray->dir.y * s.t;
+	s.pr.z = ray->origin.z + ray->dir.z * s.t;
+	if (s.t < 0.0f || s.t > 10000.0f)
 		obj->distance = 0;
 	else
-		obj->distance = sqrt(power(pr.x - ray->origin.x, 2) \
-			+ power(pr.y - ray->origin.y, 2) + power(pr.z - ray->origin.z, 2));
+	{
+		obj->distance = sqrt(pow(s.pr.x - ray->origin.x, 2) \
+		+ pow(s.pr.y - ray->origin.y, 2) + pow(s.pr.z - ray->origin.z, 2));
+	}
 }
 
 void		intersect_sphere(t_ray *ray, t_obj *obj)
 {
-	t_vector3	dist;
+	t_vector3	center;
 	float		a;
 	float		b;
 	float		c;
@@ -69,18 +69,18 @@ void		intersect_sphere(t_ray *ray, t_obj *obj)
 	float		res1;
 	float		res2;
 
-	dist = substract_vector3(&(ray->origin), &(obj->pos));
+	center = substract_vector3(&(ray->origin), &(obj->pos));
 	a = scalar_vector3(&(ray->dir), &(ray->dir));
-	b = 2 * scalar_vector3(&(ray->dir), &dist);
- 	c = scalar_vector3(&dist, &dist) - (obj->param * obj->param);
+	b = 2 * scalar_vector3(&(ray->dir), &center);
+ 	c = scalar_vector3(&center, &center) - (obj->param * obj->param);
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
 		obj->distance = -1.0f;
 	else
 	{
 		sqrtdelta = sqrtf(delta);
-		res1 = (-b + sqrtdelta) / 2;
-		res2 = (-b - sqrtdelta) / 2;
+		res1 = (-b + sqrtdelta) / 2.0f;
+		res2 = (-b - sqrtdelta) / 2.0f;
 		if (res1 > res2)
 			res1 = res2;
 		// printf("%f\n", res1);
@@ -119,7 +119,6 @@ void	raytracer(t_env *e)
 	t_obj		*ptr;
 	float		x;
 	float		y;
-	int			len[2];
 	t_obj		*obj;
 	void		(*intersect[4])(t_ray*, t_obj*) = {intersect_sphere, intersect_cylinder, intersect_cone, intersect_plan};
 	t_ray		ray;
@@ -146,20 +145,11 @@ void	raytracer(t_env *e)
 		{
 			ptr = e->objs;
 			obj = NULL;
-			len[0] = -1;
-			if (0)
-			{
-				ray.dir.y = y - e->sdl->mid.y - e->cam.pos.y;
-				ray.dir.x = x - e->sdl->mid.x - e->cam.pos.x;
-				ray.dir.z = SCREEN_DIST;
-				rot_vector33(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(0), DTOR(0), DTOR(0)}, ROT_WAY);
-			} else {
-				y_pitched = (x - e->sdl->mid.x) * pitch;
-				// y_pitched = y_pitched * cosf(DTOR(y_pitched));
-				// printf("%f\t%f\n", x_pitched, y_pitched);
-				// printf("\t(%f\t%f)\n", x_pitched * cosf(DTOR(x_pitched)), y_pitched * cosf(DTOR(y_pitched)));
-				rot_vector33(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(x_pitched), DTOR(y_pitched), DTOR(0)}, ROT_WAY);
-			}
+			y_pitched = (x - e->sdl->mid.x) * pitch;
+			// y_pitched = y_pitched * cosf(DTOR(y_pitched));
+			// printf("%f\t%f\n", x_pitched, y_pitched);
+			// printf("\t(%f\t%f)\n", x_pitched * cosf(DTOR(x_pitched)), y_pitched * cosf(DTOR(y_pitched)));
+			rot_vector3(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(x_pitched), DTOR(y_pitched), DTOR(0)}, ROT_LEFT);
 			reset_distances(ptr);
 			while (ptr)
 			{
@@ -183,11 +173,8 @@ void	raytracer(t_env *e)
 						col.y = (int)(obj->color.y * (1.0f - coef));
 						col.z = (int)(obj->color.z * (1.0f - coef));
 					}
-					if (x == 400 && obj->type == SPHERE)
-					{
-						printf("%f\t%f\t%f\t%f\n", \
-						obj->distance, col.x, col.y, col.z);
-					}
+					if (x == 385 && y == 385 && obj->type == SPHERE)
+						debug_ray(obj, ray2, col);
 				}
 				sdl_putpixel(e->sdl->surface, x, y, \
 					RGB(col.x, col.y, col.z));

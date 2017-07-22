@@ -85,13 +85,13 @@ static int		build_step_cam(t_env *e, t_str *ptr)
 t_str			*build_cam(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_cam");
-	(void)id;
 	char	**tok;
 	int		(*func[3])(t_env*, t_str*) = { build_pos_cam, build_rot_cam, build_step_cam };
 
 	ptr = check_no_value(ptr);
 	if ((tok = (char**)malloc(sizeof(char*) * 5)) == NULL)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
+	e->cam.id = id;
 	tok[0] = ft_strdup(YA_POS);
 	tok[1] = ft_strdup(YA_ROT);
 	tok[2] = ft_strdup(YA_STEP);

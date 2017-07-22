@@ -37,7 +37,8 @@ CFILE			=	main.c \
 					raytracer.c \
 					sdl_putpixel.c \
 					calc.c \
-					rot_vector.c
+					rot_vector.c \
+					debug.c
 
 HFILE			=	rtv1.h
 
