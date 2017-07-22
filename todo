@@ -18,8 +18,6 @@ bug: fisheye
 
 
 
-
-
 possible: construire le tableau de tokens (tok[]) via la charte et les operations binaires
 	char a = 1;
 	char b = 2;
@@ -35,8 +33,6 @@ possible: construire le tableau de tokens (tok[]) via la charte et les operation
 	// f est dans cont?
 	if ((cont & f) == f)
 		ft_putendl("yes");
-
-
 
 	if ((cont & (f | g) == (f | g))
 		ft_putendl("yes");

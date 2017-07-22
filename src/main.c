@@ -12,31 +12,20 @@
 
 #include <rtv1.h>
 
-void	print_vector3(t_vector3	vector)
-{
-	printf("%d\t", (int)vector.x);
-	printf("%d\t", (int)vector.y);
-	printf("%d\t", (int)vector.z);
-}
-void	print_vector2(t_vector2	vector)
-{
-	printf("%d\t", (int)vector.x);
-	printf("%d\t", (int)vector.y);
-}
-
 void	print_objects(t_env *e)
 {
 	ENDL
 	ENDL
 	ENDL
-	printf("amblight\t%f\n", e->amblight);
-	printf("window  \t%d\t%d\t%d\t%d\t\"%s\"\n", (int)e->sdl->size.x, (int)e->sdl->size.y, (int)e->sdl->mid.x, (int)e->sdl->mid.y, e->sdl->title);
+	printf("\tamblight\t%f\n", e->amblight);
+	printf("\twindow  \t%d\t%d\t%d\t%d\t\"%s\"\n", (int)e->sdl->size.x, (int)e->sdl->size.y, (int)e->sdl->mid.x, (int)e->sdl->mid.y, e->sdl->title);
+	printf("\tcam     \t%d\t%d\t%d\t%d\t%d\t%d\n", (int)e->cam.pos.x, (int)e->cam.pos.y, (int)e->cam.pos.z, (int)e->cam.rot.x, (int)e->cam.rot.y, (int)e->cam.rot.z);
 	t_light	*li = e->lights;
 	while (li)
 	{
 		printf("lights  \t");
-		print_vector3(li->pos);
-		print_vector3(li->rot);
+		print_vector3(li->pos, "");
+		print_vector3(li->rot, "");
 		printf("%f\n", li->intensity);
 		li = li->next;
 	}
@@ -44,10 +33,11 @@ void	print_objects(t_env *e)
 	char	*tab[4] = {"sphere", "cylinder", "cone", "plan"};
 	while (obj)
 	{
+		printf("%d\t", obj->id);
 		printf("%s    \t", tab[obj->type]);
-		print_vector3(obj->pos);
-		print_vector3(obj->rot);
-		print_vector3(obj->color);
+		print_vector3(obj->pos, "");
+		print_vector3(obj->rot, "");
+		print_vector3(obj->color, "");
 		printf("%f\n", obj->param);
 		obj = obj->next;
 	}

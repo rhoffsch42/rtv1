@@ -16,3 +16,8 @@ strdup pas protege: faire le define MALLOC_FAIL
 			if (ptr == NULL)
 				ft_errexit("Error: malloc failed\n", RED, MALLOC_FAIL);
 		}
+
+logs:
+	creer un fichier txt
+	ecrire dedans
+		faire ft_printf ?

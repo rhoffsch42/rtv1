@@ -3,9 +3,9 @@
 t_str	*build_amblight(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_amblight");
-	(void)id;
 	char	*sep;
 
+	(void)id;
 	sep = ptr->str + ft_strlen(YA_AMBLIGHT) + 1;
 	if (sep[0] != ' ')
 		error_yaml(ptr->str, YA_ERROR);

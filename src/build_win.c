@@ -57,10 +57,10 @@ static int		build_title(t_env *e, t_str *ptr)
 t_str	*build_win(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_win");
-	(void)id;
 	int		(*func[2])(t_env*, t_str*) = {build_size, build_title};
 	char	**tok;
 
+	(void)id;
 	ptr = check_no_value(ptr);
 	if ((tok = (char**)malloc(sizeof(char*) * (3 + 1))) == NULL)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);

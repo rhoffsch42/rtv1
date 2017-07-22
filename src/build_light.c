@@ -74,7 +74,6 @@ static int		build_intensity(t_env *e, t_str *ptr)
 t_str			*build_light(t_env *e, t_str *ptr, int id)
 {
 	ft_putendl("- - - - - -build_cone");
-	(void)id;
 	t_light	*old;
 	char	**tok;
 	int		(*func[3])(t_env*, t_str*) = { build_pos_light, build_rot_light, build_intensity };
@@ -92,6 +91,7 @@ t_str			*build_light(t_env *e, t_str *ptr, int id)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
 	ptr = building_algo(e, ptr, tok, func);
 	e->lights->next = old;
+	e->lights->id = id;
 	ft_strdel(&(tok[4]));
 	ft_tabdel(&tok);
 	ft_putendl("///////////////////////");
