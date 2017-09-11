@@ -11,26 +11,78 @@ cam:
         - 0
         - 0
     rot:
-        - 0
+        - 30
         - 0
         - 0
     step:
         - 0
         - 0
-plan:
+plan: #droite
+    pos:
+        - 100
+        - -50
+        - 0
+    rot:
+        - 0
+        - 0
+        - -90
+    color:
+        - 100
+        - 50
+        - 100
+plan: #gauche
+    pos:
+        - -100
+        - -50
+        - 0
+    rot:
+        - 0
+        - 0
+        - 90
+    color:
+        - 100
+        - 50
+        - 11
+plan: #haut
     pos:
         - 0
-        - -150
-        - 50
+        - 100
+        - 0
     rot:
-        - -45
+        - 0
         - 0
         - 0
     color:
-        - 255
+        - 250
         - 225
         - 11
-
+plan: #bas
+    pos:
+        - 0
+        - -100
+        - 0
+    rot:
+        - 180
+        - 0
+        - 0
+    color:
+        - 100
+        - 225
+        - 11
+cylinder:
+    pos:
+        - 0
+        - 0
+        - 50
+    rot:
+        - 0
+        - 0
+        - 0
+    color:
+        - 77
+        - 88
+        - 99
+    ray: 20
 #les boules du bas sont bleues (y = -190)
 #les boules de gauche sont vertes (x = -140)
 
