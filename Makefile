@@ -37,6 +37,7 @@ CFILE			=	main.c \
 					raytracer.c \
 					sdl_putpixel.c \
 					calc.c \
+					calc2.c \
 					rot_vector.c \
 					debug.c
 

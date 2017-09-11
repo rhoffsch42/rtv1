@@ -142,6 +142,7 @@ t_str			*build_plan(t_env *e, t_str *ptr, int id)
 		ft_errexit("Error: malloc\n", RED, MALLOC_FAIL);
 	e->objs->type = PLAN;
 	e->objs->id = id;
+	e->objs->param = -1;
 	ptr = building_algo(e, ptr, tok, func);
 	e->objs->next = old;
 	ft_strdel(&(tok[4]));

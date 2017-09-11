@@ -38,13 +38,61 @@ void	print_objects(t_env *e)
 		print_vector3(obj->pos, "");
 		print_vector3(obj->rot, "");
 		print_vector3(obj->color, "");
-		printf("%f\n", obj->param);
+		printf("param: %f\n", obj->param);
 		obj = obj->next;
 	}
 }
 
+void	test_rots(void)
+{
+	////////////////////////// test rot inverse 2d
+	t_vector2	b = {110, 35};
+	print_vector2(b, "\nb\t");
+	rot_vector2(&b, &b, DTOR(44), ROT_WAY);
+	print_vector2(b, "\nb\t");
+	rot_vector2(&b, &b, DTOR(44), -ROT_WAY);
+	print_vector2(b, "\nb\t");
+	printf("\n");
+	// exit(0);
+	////////////////////////// test rot inverse 3d
+	t_vector3	a = {110, 35, 75};
+	t_vector3	r = {90, 40, 10};
+	print_vector3f(a, "\na\t");
+	rot_vector3(&a, &a, dtor_vector3(r), ROT_WAY);
+	print_vector3f(a, "\na\t");
+	revrot_vector3(&a, &a, dtor_vector3(r), -ROT_WAY);
+	print_vector3f(a, "\na\t");
+	printf("\n");
+	printf("\n");
+	// exit(0);
+	////////////////////////// rot 3d
+	t_vector3	u = {0, 0, 1};
+	t_vector3	v = {1, 0, 0};
+	t_vector3	rot = {0, 0, 90};
+	print_vector3f(u, "Plan.u   \t");
+	print_vector3f(v, "\nPlan.v   \t");
+	rot_vector3(&u, &u, dtor_vector3(rot), ROT_WAY);
+	rot_vector3(&v, &v, dtor_vector3(rot), ROT_WAY);
+
+	t_ray	ray = {{-20, 20, 20}, {10, -15, -10}};
+	t_ray	ray2 = {{0, 0, 0}, {0, 0, 0}};
+	rot_vector3(&(ray.origin), &(ray2.origin), dtor_vector3(rot), -ROT_WAY);
+	rot_vector3(&(ray.dir), &(ray2.dir), dtor_vector3(rot), -ROT_WAY);
+
+	print_vector3f(ray.origin, "\nRay.origin\t");
+	print_vector3f(ray.dir, "\nRay.dir  \t");
+	printf("\n\t\t\t\t-----------------------\n");
+	print_vector3f(u, "Plan.u   \t");
+	print_vector3f(v, "\nPlan.v   \t");
+	print_vector3f(ray2.origin, "\nRay2.origin\t");
+	print_vector3f(ray2.dir, "\nRay2.dir  \t");
+	printf("\n");
+	exit(0);
+}
+
 int		main(int ac, char **av)
 {
+	test_rots();
 	// t_vector3	vec = { 100, 100, 100 };
 	// t_vector3	rot = { DTOR(90), DTOR(0), DTOR(0) };
 	//
