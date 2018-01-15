@@ -18,6 +18,7 @@
 # include <math.h>
 # include <stdio.h>
 
+
 # define ENDL			ft_putchar(10);
 # define SPACE			ft_putchar(32);
 # define T_LIST			t_str*

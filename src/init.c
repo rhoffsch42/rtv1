@@ -67,7 +67,6 @@ t_env	*init_env(void)
 
 void	init_sdl(t_sdl *sdl)
 {
-	(void)sdl;
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 		ft_errexit(SDL_GetError(), RED, SDL_FAIL);
 	sdl->win = SDL_CreateWindow(sdl->title, SDL_WINDOWPOS_CENTERED,

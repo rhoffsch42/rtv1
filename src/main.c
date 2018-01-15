@@ -87,12 +87,12 @@ void	test_rots(void)
 	print_vector3f(ray2.origin, "\nRay2.origin\t");
 	print_vector3f(ray2.dir, "\nRay2.dir  \t");
 	printf("\n");
-	exit(0);
+	// exit(0);
 }
 
 int		main(int ac, char **av)
 {
-	test_rots();
+	// test_rots();
 	// t_vector3	vec = { 100, 100, 100 };
 	// t_vector3	rot = { DTOR(90), DTOR(0), DTOR(0) };
 	//
