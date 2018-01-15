@@ -36,18 +36,18 @@ void		intersect_cylinder(t_ray *ray, t_obj *obj)
 			res1 = res2;
 		obj->distance = res1;
 	}
-/////////////////////////////////
-// a, b, c, r, connus
-// x2 + y2 + z2 - (ax + by +cz)2 / (a2 + b2 + c2) = r2
-// // equation parametrique (u? v?)
-// x = r * cos(u)
-// y = r * sin(u)
-// z = v
-// // ou
-// x = r * cos(u - v)
-// y = r * sin(u - v)
-// z = u + v
-/////////////////////////////////
+	/////////////////////////////////
+	// a, b, c, r, connus
+	// x2 + y2 + z2 - (ax + by +cz)2 / (a2 + b2 + c2) = r2
+	// // equation parametrique (u? v?)
+	// x = r * cos(u)
+	// y = r * sin(u)
+	// z = v
+	// // ou
+	// x = r * cos(u - v)
+	// y = r * sin(u - v)
+	// z = u + v
+	/////////////////////////////////
 }
 
 void		intersect_cone(t_ray *ray, t_obj *obj)
@@ -95,7 +95,7 @@ void		intersect_plan2(t_ray *ray, t_obj *obj)
 
 	translate_vector3(&(ray->origin), &(raycpy.origin), &(obj->pos), -1);
 	//remarque: si ray.origine.y < 0, alors on regarde la face du bas/de derriere
-	// peut etre utile pour ne pas dessiner la face slon le cote touche
+	// peut etre utile pour ne pas dessiner la face selon le cote touche
 
 	rot_vector3(&(raycpy.origin), &(raycpy.origin), dtor_vector3(obj->rot), -ROT_WAY);
 	rot_vector3(&(ray->dir), &(raycpy.dir), dtor_vector3(obj->rot), -ROT_WAY);

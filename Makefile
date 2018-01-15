@@ -50,7 +50,7 @@ SRC				=	$(patsubst %.c, $(SDIR)%.c, $(CFILE))
 ODIR			=	obj/
 OBJ				=	$(patsubst %.c, $(ODIR)%.o, $(CFILE))
 
-.PHONY: all compile lib norm clean fclean nosdl re
+.PHONY: all compile lib norm clean fclean pclean re
 
 all: compile
 
@@ -73,7 +73,6 @@ $(ODIR)%.o: $(SDIR)%.c $(HDR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "\033[33;33m\t$@ compiled\033[33;37m"
 
-
 norm:
 	norminette $(SRC) $(HDR)
 
@@ -85,7 +84,7 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "\033[33;32m$(NAME) \033[33;31mdeleted\033[33;37m"
 
-nosdl:
+pclean: fclean
 	make fclean -C ./
 	make fclean -C ./libft/
 	make fclean -f Makefile.sdl
