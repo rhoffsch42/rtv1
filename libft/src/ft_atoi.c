@@ -12,29 +12,6 @@
 
 #include "libft.h"
 
-static char	*ft_strtrim_extended(const char *s)
-{
-	int		i;
-	int		j;
-	char	*dest;
-
-	i = 0;
-	j = 0;
-	dest = (char*)malloc(sizeof(char) * ft_strlen(s) + 1);
-	if (!dest)
-		return (NULL);
-	while (s[i] == '\v' || s[i] == '\r' || s[i] == '\f' || s[i] == 32 || \
-			s[i] == '\n' || s[i] == '\t')
-		i++;
-	while (s[i])
-		dest[j++] = s[i++];
-	i = ft_strlen(dest) - 1;
-	while (dest[i] == '\v' || dest[i] == '\r' || dest[i] == '\f')
-		i--;
-	dest[i + 1] = '\0';
-	return (dest);
-}
-
 static int	ft_check(char *cp, int i)
 {
 	if (ft_isdigit(cp[i]) == 0 && cp[i] != 43 && cp[i] != 45)
@@ -53,7 +30,7 @@ int			ft_atoi(const char *str)
 
 	n = 0;
 	i = 0;
-	cp = ft_strtrim_extended(str);
+	cp = ft_strtrim_extended(str, WHITESPACES);
 	if (ft_check(cp, i) != 1)
 		return (0);
 	i++;

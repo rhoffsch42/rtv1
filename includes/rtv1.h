@@ -14,6 +14,7 @@
 # define RTV1_H
 
 # include <libft.h>
+# include <libmath3d.h>
 # include <SDL2/SDL.h>
 # include <math.h>
 # include <stdio.h>
@@ -23,12 +24,7 @@
 # define SPACE			ft_putchar(32);
 # define T_LIST			t_str*
 
-# define RGB(r, g, b)	(65536 * (int)(r) + 256 * (int)(g) + (int)(b))
-# define RTOD(x)		(x * (180.0f / M_PI))
-# define DTOR(x)		(x * M_PI / 180.0f)
 # define ROT_WAY		1
-# define ROT_RIGHT		-1
-# define ROT_LEFT		1
 
 # define DEF_WIN_TITLE	"Default title"
 # define DEF_WIN_X		800
@@ -92,20 +88,11 @@
 # define YA_BAD_TOKEN	"Error : unknow token"
 # define YA_BAD_FLOAT	"Error : invalid float value"
 # define OK				0
-# define BAD_ARGS		0
-# define OPEN_FAIL		0
-# define MALLOC_FAIL	0
 # define YA_BAD_FORMAT	0
 # define SDL_FAIL		0
 # define SDL_BAD_BPP	0
 
 typedef struct s_env t_env;
-
-typedef struct			s_str
-{
-	char				*str;
-	struct s_str		*next;
-}						t_str;
 
 typedef struct			s_chart
 {
@@ -116,25 +103,11 @@ typedef struct			s_chart
 	t_str				*(*func)(t_env*, t_str*, int);
 }						t_chart;
 
-typedef struct			s_vector2
-{
-	float				x;
-	float				y;
-}						t_vector2;
-
-typedef struct			s_vector3
-{
-	float				x;
-	float				y;
-	float				z;
-}						t_vector3;
-
 typedef struct	s_ray
 {
 	t_vector3	origin;
 	t_vector3	dir;
 }				t_ray;
-
 
 typedef struct			s_cam
 {
@@ -191,12 +164,13 @@ void					print_vector3f(t_vector3 vector, char *comment);
 void					print_vector3(t_vector3	vector, char *comment);
 void					print_vector2(t_vector2	vector, char *comment);
 
+//	libft
+t_void					*free_t_str(t_void *list);
+void					ft_free_list(void *list, t_void *(custom_free)(t_void*));
+
 t_env					*init_env(void);
 void					init_sdl(t_sdl *sdl);
 void					get_scene(t_env *e, int ac, char **av);
-int						is_empty(T_LIST ptr);
-T_LIST					del(T_LIST ptr);
-T_LIST					remove_list(T_LIST ptr, int (condition)(T_LIST), T_LIST (del)(T_LIST));
 void					error_yaml(char *s1, char *s2);
 char					*secure_atof(char *s);
 
@@ -223,9 +197,8 @@ void					sdl_putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
 void					raytracer(t_env *e);
 t_vector3				substract_vector3(t_vector3 *v1, t_vector3 *v2);
 float					scalar_vector3(t_vector3 *v1, t_vector3 *v2);
-void					translate_vector3(t_vector3 *src, t_vector3 *dst, t_vector3 *vec, float coef);
+void					translate_vector3(t_vector3 *dst, t_vector3 *src, t_vector3 *vec, float coef);
 
-char					*ft_strtrim_extended(const char *s);
 float					ft_atof(char *s);
 void					ft_tabdel(char ***tab);
 void					rot_vector2(t_vector2 *src, t_vector2 *dst, float rad, float rot_direction);

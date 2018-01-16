@@ -14,7 +14,7 @@
 
 void	ft_errexit(const char *message, char *color, int code)
 {
-	ft_putstr_color((char*)message, color);
-	ft_putchar(10);
+	ft_putstr_color((char*)message, color, 2);
+	ft_putchar_fd(10, 2);
 	exit(code);
 }

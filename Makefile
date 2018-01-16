@@ -15,14 +15,13 @@ CC				=	gcc
 CFLAGS			=	-Wall -Wextra
 
 SDL_DST			=	SDL
-INCLUDE			=	-I includes -I libft/includes -I ./$(SDL_DST)/include
+INCLUDE			=	-I includes -I libft/includes -I libmath3d/includes -I ./$(SDL_DST)/include
+LIBS			=	-L libft/ -lft -L libmath3d/ -lmath3d -lm
 SDL				=	`./$(SDL_DST)/bin/sdl2-config --cflags --libs` -lSDL2_image
 
 CFILE			=	main.c \
 					init.c \
 					scene.c \
-					remove_list.c \
-					ft_strtrim_extended.c \
 					ft_atof.c \
 					build.c \
 					building_algo.c \
@@ -34,6 +33,7 @@ CFILE			=	main.c \
 					build_properties.c \
 					adjust_objects.c \
 					ft_tabdel.c \
+					ft_free_list.c \
 					raytracer.c \
 					sdl_putpixel.c \
 					calc.c \
@@ -60,12 +60,13 @@ compile: lib sdl
 
 lib:
 	@$(MAKE) -C libft/
+	@$(MAKE) -C libmath3d/
 
 sdl:
 	@$(MAKE) -f Makefile.sdl
 
 $(NAME): $(SRC) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -L libft/ -lft -lm $(SDL)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBS) $(SDL)
 	@echo "\033[33;32m$(NAME) \033[33;37mcompiled"
 	@echo "\033[33;35m$(NAME) End\033[33;37m"
 
@@ -85,8 +86,8 @@ fclean: clean
 	@echo "\033[33;32m$(NAME) \033[33;31mdeleted\033[33;37m"
 
 pclean: fclean
-	make fclean -C ./
 	make fclean -C ./libft/
+	make fclean -C ./libmath3d/
 	make fclean -f Makefile.sdl
 
 re: fclean all

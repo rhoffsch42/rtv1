@@ -1,31 +1,20 @@
-version: 25 05 2017
+v 2018 01 05
 -----------------------
+logs:
+	creer un fichier txt
+	ecrire dedans
+		faire ft_printf ?
 
-max fmax fmaxf
 ---------------------------------
-strmax f" f"f
-tabmax f" f"f
-
-=> ou bien:
-
-strmax seulement grace a cette structure:
-strmax(TYPE *str, int size);
-
-#define TYPE	int
-#define TYPE	double
-#define TYPE	float
-
-typedef struct			s_itab
+! get_next_line utilise des strdup ~like 
+	-> s'arrete sur les \0
+faire une fonction qui copie le contenu complet et l'envoie dans cette structure:
+typedef struct		s_data
 {
-	TYPE				*data
-	TYPE				**tab;
-	int					w;
-	int					h;
-}						t_itab;
-tab = malloc(sizeof(TYPE*) * h);
-tab[i] = data + (i * w);
+	struct s_data	*next;
+	int				len;
+	char			*data;
+}					t_data;
 
-attention: les pointeur dans le tableau pointent directement sur data,
-la chaine contenue ne se termine donc pas a   ptr + w   mais contient tout jusqua la fin de data.
-->Bien manipuler la chaine avec  w . 
+valgrind detecte des read incorrect et un leak de 1 bytes parfois, osef ?
 ---------------------------------

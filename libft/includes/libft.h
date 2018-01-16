@@ -17,8 +17,10 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
+
+# define WHITESPACES "\v\r\f \n\t\0"
 # define BUFF_SIZE 65
-# define COLOR(X) ft_strcolor("\033[", X, "m")
+# define COLOR(X, FD) ft_strcolor("\033[", X, "m", FD)
 # define BLACK "30"
 # define RED "31"
 # define GREEN "32"
@@ -29,20 +31,46 @@
 # define WHITE "37"
 # define NOCOLOR "0"
 
+# define OK				0
+# define BAD_ARGS		1
+# define OPEN_FAIL		2
+# define MALLOC_FAIL	3
+
+typedef struct		s_void
+{
+	struct s_void	*next;
+}					t_void;
+
 typedef struct		s_istr
 {
+	struct s_istr	*next;
 	int				*istr;
 	int				size;
-	struct s_istr	*next;
 }					t_istr;
 
 typedef struct		s_list
 {
+	struct s_list	*next;
 	void			*content;
 	size_t			content_size;
-	struct s_list	*next;
 }					t_list;
 
+typedef struct		s_str
+{
+	struct s_str	*next;
+	char			*str;
+}					t_str;
+
+t_str				*ft_getfile(char *filename);
+void				remove_comments(t_str *ptr, char *comment_str);
+void				remove_white_spaces(t_str *ptr);
+t_void				*remove_list(t_void *ptr, int (condition)(t_void*), \
+								t_void *(del)(t_void*));
+t_void				*del(t_void *ptr);
+int					is_empty(t_void *ptr);
+int					ft_listlen(void *list);
+void				ft_chkptr(void *ptr, char *message, int code);
+void				*safe_malloc(int size);
 void				ft_errexit(const char *message, char *color, int code);
 void				ft_free_tab(char **tab);
 int					get_next_line(int const fd, char **line);
@@ -57,6 +85,7 @@ void				ft_puttab(char **tab);
 int					ft_strlen(const char *s);
 int					ft_tablen(char **tab);
 char				*ft_strdup(const char *s1);
+char				*ft_strndup(char *src, int start, int end);
 void				ft_strswap(char **s1, char **s2);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strstr(const char *s1, const char *s2);
@@ -70,6 +99,7 @@ char				*ft_strjoin_free(char *s1, char *s2, int n);
 char				**ft_tabjoin(char *s, char **tab);
 void				ft_clear_tab(char ***tab);
 char				*ft_strtrim(const char *s);
+char				*ft_strtrim_extended(const char *s, char *spaces);
 char				**ft_strsplit(const char *s, char c);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				ft_bzero(void *s, size_t n);
@@ -97,6 +127,7 @@ void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 char				*ft_strnew(size_t size);
 void				ft_strdel(char **as);
+void				ft_tabdel(char ***tab);
 void				ft_strclr(char *s);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
@@ -111,8 +142,9 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 t_list				*ft_lstnew(void const *content, size_t content_size);
-void				ft_putstr_color(char *str, char *color);
-void				ft_strcolor(char *c1, char *color, char *c2);
+void				ft_putstr_color(char *str, char *color, int fd);
+void				ft_putchar_color(char c, char *color);
+void				ft_strcolor(char *c1, char *color, char *c2, int fd);
 t_istr				*ft_int_strdup(int *str, int size);
 double				ft_fabs(double n);
 int					ft_abs(int n);

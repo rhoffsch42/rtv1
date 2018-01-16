@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_tabdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhoffsch <rhoffsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 15:06:07 by rhoffsch          #+#    #+#             */
-/*   Updated: 2014/11/07 20:41:44 by rhoffsch         ###   ########.fr       */
+/*   Created: 2018/01/05 17:07:58 by rhoffsch          #+#    #+#             */
+/*   Updated: 2018/01/05 17:09:41 by rhoffsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-int						ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_tabdel(char ***tab)
 {
-	int					i;
-	const unsigned char *cp1;
-	const unsigned char *cp2;
+	int		i;
 
-	cp1 = (const unsigned char*)s1;
-	cp2 = (const unsigned char*)s2;
 	i = 0;
-	while (cp2[i] == cp1[i] && n > 0)
+	while ((*tab)[i] != NULL)
 	{
+		ft_strdel(&(*tab)[i]);
 		i++;
-		n--;
-		if (cp2[i] == '\0' && cp1[i] == '\0')
-			return (0);
 	}
-	return (cp1[i] - cp2[i]);
+	free(*tab);
+	*tab = NULL;
 }

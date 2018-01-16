@@ -20,7 +20,7 @@ void		intersect_cylinder(t_ray *ray, t_obj *obj)
 	float			res1;
 	float			res2;
 
-	rot_vector3(&u, &u, dtor_vector3(obj->rot), ROT_WAY);
+	u = vector3_rot(u, dtor_vector3(obj->rot), ROT_WAY);
 	s.a = pow(ray->dir.x, 2) + pow(ray->dir.y, 2);
 	s.b = 2 * ray->origin.x * ray->dir.x + 2 * ray->origin.y * ray->dir.y;
 	s.c = pow(ray->origin.x, 2) + pow(ray->origin.y, 2) - obj->param;
@@ -63,8 +63,8 @@ void		intersect_plan(t_ray *ray, t_obj *obj)
 	t_vector3		u = {0, 0, 10};// si ca passe pas a la norme,
 	t_vector3		v = {10, 0, 0};// les mettre en static dans t_inter_plan
 	// pour ne pas avoir a faire ces 2 rotations a chaque lance de rayon
-	rot_vector3(&u, &u, dtor_vector3(obj->rot), ROT_WAY);
-	rot_vector3(&v, &v, dtor_vector3(obj->rot), ROT_WAY);
+	u = vector3_rot(u, dtor_vector3(obj->rot), ROT_WAY);
+	v = vector3_rot(v, dtor_vector3(obj->rot), ROT_WAY);
 
 	// float	a, b, c;// produit vectoriel u/\v
 	s.a = u.y * v.z - u.z * v.y;
@@ -93,12 +93,12 @@ void		intersect_plan2(t_ray *ray, t_obj *obj)
 	//faire un check si le rayon est paralele au plan et dans le plan ? de preference oui
 	t_ray			raycpy;
 
-	translate_vector3(&(ray->origin), &(raycpy.origin), &(obj->pos), -1);
+	raycpy.origin = vector3_sub(ray->origin, obj->pos);
 	//remarque: si ray.origine.y < 0, alors on regarde la face du bas/de derriere
 	// peut etre utile pour ne pas dessiner la face selon le cote touche
 
-	rot_vector3(&(raycpy.origin), &(raycpy.origin), dtor_vector3(obj->rot), -ROT_WAY);
-	rot_vector3(&(ray->dir), &(raycpy.dir), dtor_vector3(obj->rot), -ROT_WAY);
+	raycpy.origin = vector3_rot(raycpy.origin, dtor_vector3(obj->rot), -ROT_WAY);
+	raycpy.dir = vector3_rot(ray->dir, dtor_vector3(obj->rot), -ROT_WAY);
 	// ATTENTION: cela fonctionne que s'il n y a qu une seule rotation a faire
 	// faire la fonction de matrice de rotation inverse droit: ZYX
 
@@ -218,7 +218,7 @@ void	raytracer(t_env *e)
 			// y_pitched = y_pitched * cosf(DTOR(y_pitched));
 			// printf("%f\t%f\n", x_pitched, y_pitched);
 			// printf("\t(%f\t%f)\n", x_pitched * cosf(DTOR(x_pitched)), y_pitched * cosf(DTOR(y_pitched)));
-			rot_vector3(&(ray.dir), &(ray2.dir), (t_vector3){DTOR(x_pitched), DTOR(y_pitched), DTOR(0)}, ROT_LEFT);
+			ray2.dir = vector3_rot(ray.dir, (t_vector3){DTOR(x_pitched), DTOR(y_pitched), DTOR(0)}, ROT_LEFT);
 			reset_distances(ptr);
 			while (ptr)
 			{

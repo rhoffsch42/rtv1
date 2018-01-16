@@ -30,7 +30,7 @@ t_vector3	dtor_vector3(t_vector3 src)
 }
 
 
-void	translate_vector3(t_vector3 *src, t_vector3 *dst, t_vector3 *vec, float coef)
+void	translate_vector3(t_vector3 *dst, t_vector3 *src, t_vector3 *vec, float coef)
 {
 	dst->x = src->x + vec->x * coef;
 	dst->y = src->y + vec->y * coef;
