@@ -35,6 +35,10 @@ CFILE			=	main.c \
 					ft_tabdel.c \
 					ft_free_list.c \
 					raytracer.c \
+					intersect_sphere.c \
+					intersect_plan.c \
+					intersect_cone.c \
+					intersect_cylinder.c \
 					sdl_putpixel.c \
 					calc.c \
 					calc2.c \

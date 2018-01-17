@@ -24,7 +24,7 @@
 # define SPACE			ft_putchar(32);
 # define T_LIST			t_str*
 
-# define ROT_WAY		1
+# define ROT_WAY		ROT_RIGHT
 
 # define DEF_WIN_TITLE	"Default title"
 # define DEF_WIN_X		800
@@ -103,11 +103,21 @@ typedef struct			s_chart
 	t_str				*(*func)(t_env*, t_str*, int);
 }						t_chart;
 
-typedef struct	s_ray
+typedef struct			s_ray
 {
-	t_vector3	origin;
-	t_vector3	dir;
-}				t_ray;
+	t_vector3			origin;
+	t_vector3			dir;
+}						t_ray;
+
+typedef struct			s_inter_plan
+{
+	float				a;
+	float				b;
+	float				c;
+	float				d;
+	float				t;
+	t_vector3			pr;
+}						t_inter_plan;
 
 typedef struct			s_cam
 {
@@ -194,10 +204,17 @@ int						build_param(t_env *e, t_str *ptr);
 
 
 void					sdl_putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel);
-void					raytracer(t_env *e);
 t_vector3				substract_vector3(t_vector3 *v1, t_vector3 *v2);
 float					scalar_vector3(t_vector3 *v1, t_vector3 *v2);
 void					translate_vector3(t_vector3 *dst, t_vector3 *src, t_vector3 *vec, float coef);
+
+void					raytracer(t_env *e);
+void					intersect_plan(t_ray ray, t_obj *obj);
+void					intersect_plan2(t_ray ray, t_obj *obj);
+void					intersect_sphere(t_ray ray, t_obj *obj);
+void					intersect_cone(t_ray ray, t_obj *obj);
+void					intersect_cylinder(t_ray ray, t_obj *obj);
+t_ray					transpose_ray(t_ray ray, t_obj obj);
 
 float					ft_atof(char *s);
 void					ft_tabdel(char ***tab);
