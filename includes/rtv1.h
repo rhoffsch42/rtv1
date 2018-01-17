@@ -39,7 +39,7 @@
 # define TITLE_TRUNC	"[...]"
 # define DRAW_DIST		5.0000f
 # define SCREEN_DIST	1.0f
-# define FOV			90.0f
+# define FOV			60.0f
 
 # define YA_SEPARATOR	':'
 # define YA_LIST		"- "
@@ -208,14 +208,16 @@ t_vector3				substract_vector3(t_vector3 *v1, t_vector3 *v2);
 float					scalar_vector3(t_vector3 *v1, t_vector3 *v2);
 void					translate_vector3(t_vector3 *dst, t_vector3 *src, t_vector3 *vec, float coef);
 
+t_ray					transpose_ray(t_ray ray, t_obj obj);
 void					raytracer(t_env *e);
 void					intersect_plan(t_ray ray, t_obj *obj);
 void					intersect_sphere(t_ray ray, t_obj *obj);
 void					intersect_cone(t_ray ray, t_obj *obj);
 void					intersect_cylinder(t_ray ray, t_obj *obj);
+
 void					intersect_plan2(t_ray ray, t_obj *obj);
+void					intersect_plan3(t_ray ray, t_obj *obj);
 void					intersect_sphere2(t_ray ray, t_obj *obj);
-t_ray					transpose_ray(t_ray ray, t_obj obj);
 
 float					ft_atof(char *s);
 void					ft_tabdel(char ***tab);

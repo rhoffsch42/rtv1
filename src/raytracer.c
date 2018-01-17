@@ -53,7 +53,7 @@ void	raytracer(t_env *e)
 	float		y;
 	t_obj		*obj;
 	void		(*intersect[4])(t_ray, t_obj*) = \
-		{intersect_sphere, intersect_cylinder, intersect_cone, intersect_plan2};
+		{intersect_sphere, intersect_cylinder, intersect_cone, intersect_plan3};
 	t_ray		ray;
 	t_ray		ray2;
 	float		pitch = FOV / e->sdl->size.x;

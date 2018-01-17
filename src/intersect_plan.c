@@ -48,16 +48,34 @@ void		intersect_plan2(t_ray ray, t_obj *obj)
 	// T n'est pas la distance reelle,
 	// distance reelle = T * vector3_magnitude(ray)
 	// si magnitude == 1, alors distance = T
+
 	obj->distance = -(raycpy.origin.y) / raycpy.dir.y;
+
 	// if (obj->distance < 0.000000f)
 		// obj->distance *= -1;// pas utile puisqu'on test si dist > draw_dist (5) apres
 	return ;
 	//////////////////////////////////////////////////////////// resultat identique
 	t_vector3	n = {0, 1, 0};
 	t_vector3	q = {0, 0, 1};
-	t_vector3	subs = substract_vector3(&q, &(raycpy.origin));
-	float a = scalar_vector3(&n, &subs);
-	float b = scalar_vector3(&n, &(raycpy.dir));
+	t_vector3	subs = vector3_sub(q, raycpy.origin);
+	float a = vector3_dot(n, subs);
+	float b = vector3_dot(n, raycpy.dir);
 	float t = a / b;
 	obj->distance = t;
+}
+
+void		intersect_plan3(t_ray ray, t_obj *obj)
+{
+	t_ray		raycpy;
+	t_vector3	n = {0, 1, 0};
+	float		dot;
+	float		t;
+
+	raycpy = transpose_ray(ray, *obj);
+	dot = vector3_dot(n, raycpy.dir);
+	if (dot == 0)
+		return ;
+	t = -vector3_dot(n, raycpy.origin) / dot;
+	if (t > 0.000000f)
+		obj->distance = t;
 }

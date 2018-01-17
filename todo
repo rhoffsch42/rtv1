@@ -1,3 +1,5 @@
+changer le system de la camera (FOV, pitch, etc)
+stocker topleft ecran puis ajouter x width y height, calculer le vecteur ray
 
 lights:
 	base: 25 objectif: 255
