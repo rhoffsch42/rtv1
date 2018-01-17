@@ -40,7 +40,7 @@ void	reset_distances(t_obj *ptr)
 {
 	while (ptr)
 	{
-		ptr->distance = 0;
+		ptr->distance = 0.0f;
 		ptr = ptr->next;
 	}
 }
@@ -61,13 +61,13 @@ void	raytracer(t_env *e)
 	float		y_pitched;
 
 	ray.origin = e->cam.pos;
-	ray.dir.y = 0;
-	ray.dir.x = 0;
-	ray.dir.z = SCREEN_DIST;
+	ray.dir.y = 0.0f;
+	ray.dir.x = 0.0f;
+	ray.dir.z = 1.0f;//magnitude du rayon
 	ray2.origin = e->cam.pos;
-	ray2.dir.y = 0;
-	ray2.dir.x = 0;
-	ray2.dir.z = SCREEN_DIST;
+	ray2.dir.y = 0.0f;
+	ray2.dir.x = 0.0f;
+	ray2.dir.z = 1.0f;//magnitude du rayon
 	y = 0;
 	while (y < e->sdl->size.y)
 	{

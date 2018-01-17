@@ -15,8 +15,8 @@ from all of em into the single rgb value for that particular pixel.
 
 bug: fisheye
 
-
-
+construire le tab[height][width] des x et y pitch avant le while
+	(pour un raytracer interactif devant calculer plusieurs images)
 
 possible: construire le tableau de tokens (tok[]) via la charte et les operations binaires
 	char a = 1;

@@ -43,9 +43,14 @@ void		intersect_plan2(t_ray ray, t_obj *obj)
 	// ray.origin.y + T * ray.dir.y = 0
 	// T * ray.dir.y = - ray.origin.y
 	// T = -(raycpy.origin.y) / raycpy.dir.y
+
+	// T = combien de fois on multiplie le vecteur ray (magnitude de 1) pour atteindre l'object
+	// T n'est pas la distance reelle,
+	// distance reelle = T * vector3_magnitude(ray)
+	// si magnitude == 1, alors distance = T
 	obj->distance = -(raycpy.origin.y) / raycpy.dir.y;
 	// if (obj->distance < 0.000000f)
-		// obj->distance *= -1;
+		// obj->distance *= -1;// pas utile puisqu'on test si dist > draw_dist (5) apres
 	return ;
 	//////////////////////////////////////////////////////////// resultat identique
 	t_vector3	n = {0, 1, 0};
@@ -55,5 +60,4 @@ void		intersect_plan2(t_ray ray, t_obj *obj)
 	float b = scalar_vector3(&n, &(raycpy.dir));
 	float t = a / b;
 	obj->distance = t;
-
 }

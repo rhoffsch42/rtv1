@@ -210,10 +210,11 @@ void					translate_vector3(t_vector3 *dst, t_vector3 *src, t_vector3 *vec, float
 
 void					raytracer(t_env *e);
 void					intersect_plan(t_ray ray, t_obj *obj);
-void					intersect_plan2(t_ray ray, t_obj *obj);
 void					intersect_sphere(t_ray ray, t_obj *obj);
 void					intersect_cone(t_ray ray, t_obj *obj);
 void					intersect_cylinder(t_ray ray, t_obj *obj);
+void					intersect_plan2(t_ray ray, t_obj *obj);
+void					intersect_sphere2(t_ray ray, t_obj *obj);
 t_ray					transpose_ray(t_ray ray, t_obj obj);
 
 float					ft_atof(char *s);

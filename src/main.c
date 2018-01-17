@@ -135,8 +135,8 @@ void	test_rots_new(void)
 }
 int		main(int ac, char **av)
 {
-	test_rots();
-	test_rots_new();
+	// test_rots();
+	// test_rots_new();
 	// t_vector3	vec = { 100, 100, 100 };
 	// t_vector3	rot = { DTOR(90), DTOR(0), DTOR(0) };
 	//
